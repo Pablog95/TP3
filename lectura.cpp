@@ -1,28 +1,50 @@
 #include "lectura.h"
-#include <iostream>
 
-using namespace std;
-
-Lectura :: Lectura (string _titulo, unsigned int _minutos, int _anio, string _autor)
-{
-	this -> titulo = _titulo;
-	this -> minutos = _minutos;
-	this -> anio = _anio;
-	this -> autor = _autor;
+Lectura::Lectura(string titulo_lectura, unsigned int minutos, unsigned int anio, Escritor* autor ){
+    this->titulo = titulo_lectura;
+    this->minutos = minutos;
+    this->anio = anio;
+    this->autor = autor;
 }
 
-string Lectura :: obtenerTitulo(){
-	return titulo;
+int Lectura::comparar(const Lectura* lectura2) const{
+    unsigned int anio1 = obtener_anio();
+    unsigned int anio2 = lectura2->obtener_anio();
+
+    if( anio1 < anio2)
+        return -1;
+    
+    if( anio1 > anio2)
+        return 1;
+    
+    return 0;
 }
 
-unsigned int Lectura :: obtenerMinutos(){
-	return minutos;
+int Lectura::comparar(unsigned int minutos2) const{
+    unsigned int minutos1 = obtener_minutos();
+    
+    if( minutos1 < minutos2)
+        return -1;
+    
+    if( minutos1 > minutos2)
+        return 1;
+    
+    return 0;
 }
 
-int Lectura :: obtenerAnio(){
-	return anio;
+string Lectura::obtener_titulo() const{
+    return titulo;
 }
 
-string Lectura :: obtenerAutor(){
-	return autor;
+unsigned int Lectura::obtener_minutos() const{
+    return minutos;
 }
+
+unsigned int Lectura::obtener_anio() const{
+    return anio;
+}
+
+Escritor* Lectura::obtener_autor() const{
+    return autor;
+}
+

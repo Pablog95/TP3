@@ -1,34 +1,40 @@
 #ifndef POEMA_H
 #define POEMA_H
+
 #include "lectura.h"
-#include <iostream>
 
-using namespace std;
-
-class Poema : public Lectura
-{
-    private:
-        string cantidadVersos;
-
-    public:
-        /*
-        Constructor
-        PRE: -
-        POS: construye una Clase Poema
-        */
-		Poema(string _titulo, unsigned int _minutos, int _anio,string _autor, string _cantidadVersos);
-
-        //PRE: -
-        //POS: Muestralos datos de la clase la clase
-		void mostrar();
-
-        //PRE: -
-        //POS: Devuelve el Genero
-		string obtenerGenero();
-
-        // Destructor
-        ~Poema(){};
-		
+class Poema : public Lectura {
+public:
+    /*
+    constructor con parametros
+    PRE: minutos > 0, anio > 0, versos > 0
+    POS: inicializa atributos
+    */
+    Poema(string titulo_lectura, unsigned int minutos, unsigned int anio, Escritor* autor, unsigned int versos);
+    
+    /*
+    Destructor
+    PRE: -
+    POS: -
+    */
+    ~Poema(){};
+    
+    /*
+    PRE: -
+    POS: borra la memoria dinamica asociada
+    */
+    void borrar(){};
+    
+    /*    
+    PRE: -
+    POS: obtiene la cantidad de versos del poema, cantidad > 0
+    */
+    unsigned int obtener_versos() const;
+    void mostrar() const;
+    void mostrar(string genero) const{};
+    
+private:
+    unsigned int versos;
 };
 
 #endif

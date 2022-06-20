@@ -1,0 +1,125 @@
+#include "lector.h"
+
+using namespace std;
+
+Lector :: Lector(){
+    lista_escritores = new Lista <Escritor*>;
+    lista_lecturas = new Lista <Lectura*>;
+    
+}
+
+Lector :: ~Lector(){
+    lista_lecturas->destruir();
+    lista_escritores->destruir();
+    
+    delete lista_escritores;
+    delete lista_lecturas;
+
+    archivo_lecturas.close();
+    archivo_escritores.close();
+}
+
+void Lector :: completar_informacion_escritura(){
+    
+    if(getline(archivo_escritores, anio_nacimiento) && anio_nacimiento != ""){
+        
+        if(getline(archivo_escritores, anio_fallecimiento) && anio_fallecimiento != ""){
+            
+            if(anio_nacimiento != "-1")
+                getline(archivo_escritores, espacio);
+            else
+                getline(archivo_escritores, espacio);
+        }
+        else
+            anio_fallecimiento = "-1";                
+    }
+    else{
+        anio_nacimiento = "-1";
+        anio_fallecimiento = "-1";
+    }
+}
+
+void Lector :: lectura_archivo_escritores( ){
+
+    archivo_escritores.open("archivoE.txt");
+    
+
+    if (!archivo_escritores)
+        cout << "El archivo no se pudo abrir porque no se encuentra o está dañado" << endl;
+
+    else{
+        
+        while(getline(archivo_escritores, n_escritor)){
+
+            getline(archivo_escritores, nombre_escritor);
+            getline(archivo_escritores, nacionalidad);
+
+            completar_informacion_escritura();
+    
+            Escritor* escritor = new Escritor(nombre_escritor, nacionalidad, string_a_int(anio_nacimiento), string_a_int(anio_fallecimiento));
+            
+            lista_escritores->alta_ultimo(escritor);  
+                     
+        }
+    }
+} 
+
+//tipo_lectura es si o si correcta : NOVELA, CUENTO, POEMA
+Lectura* Lector::procesador_entrada_lecturas(Escritor* escritor){
+    
+    if(tipo_lectura == "N"){
+        if(caracteristica == "HISTORICA")
+            return (new Historica(titulo, string_a_int(minutos), string_a_int(anio), escritor, string_a_genero_t(caracteristica), tema));
+        else
+            return (new Novela(titulo, string_a_int(minutos), string_a_int(anio), escritor, string_a_genero_t(caracteristica)));
+    }
+    else if(tipo_lectura == "C")        
+        return (new Cuento(titulo, string_a_int(minutos), string_a_int(anio),escritor, caracteristica));
+    
+    else //POEMA    
+        return (new Poema(titulo, string_a_int(minutos), string_a_int(anio), escritor, string_a_int(caracteristica)));
+}
+
+//no hay archivo vacio
+void Lector :: leer_lectura(){
+    
+    archivo_lecturas.open("archivoL.txt");
+
+    if (!archivo_lecturas)
+        cout << "El archivo no se pudo abrir porque no se encuentra o está dañado" << endl;
+
+    else{    
+        Lectura* lectura = 0;
+        
+        while(getline(archivo_lecturas, tipo_lectura)){
+
+            
+            getline(archivo_lecturas, titulo);
+            getline(archivo_lecturas, minutos);
+            getline(archivo_lecturas, anio);
+            getline(archivo_lecturas, caracteristica);
+
+            if(caracteristica == "HISTORICA")
+                getline(archivo_lecturas, tema);
+
+            getline(archivo_lecturas, referencia_al_autor);
+                        
+                
+            lectura = procesador_entrada_lecturas(lista_escritores->consulta(autor_anonimo(referencia_al_autor)));
+            
+            getline(archivo_lecturas, espacio);
+
+            lista_lecturas->insercion_ordenada(lectura);
+            
+        }
+    }
+}
+
+
+Lista<Escritor*>* Lector::obtener_Lescritores(){
+    return lista_escritores;
+}
+
+Lista<Lectura*>* Lector::obtener_Llecturas(){
+    return lista_lecturas;
+}

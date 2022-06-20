@@ -1,41 +1,47 @@
 #include "escritor.h"
-#include <iostream>
-#include <string>
 
-using namespace std;
-
-
-Escritor :: Escritor(string _referencia, string _nombreApellido, string _nacionalidad, int _anioNacimiento, int _anioFallecimiento){
-
-    this -> referencia = _referencia;
-    this -> nombreApellido = _nombreApellido;
-	this -> nacionalidad = _nacionalidad;
-	this -> anioNacimiento = _anioNacimiento;
-	this -> anioFallecimiento = _anioFallecimiento;
-}
-void Escritor :: mostrarDatos()
-{
-	cout << "Nombre y apellido: " <<nombreApellido << endl;
-	cout << "Nacionalidad: " << nacionalidad << endl;
-	cout << "Anio de nacimiento: " << anioNacimiento << endl;
-	cout << "Anio de Fallecimiento: " <<anioFallecimiento << endl;
-};
-
-void Escritor :: cambiarFallecimiento(){
-
-	int anioFallecimientoNuevo;
-
-	cout << "Ingrese el anio nuevo de fallecimiento: " << endl;
-	cin >> anioFallecimientoNuevo;
-
-	anioFallecimiento = anioFallecimientoNuevo;
-	cout << "Se cambio la fecha de fallecimiento." << endl;
+Escritor::Escritor( string nombres, string nacionalidad, int anio_nacimiento, int anio_defuncion){
+    this->nombres_y_apellidos = nombres;
+    this->nacionalidad = nacionalidad;
+    this->anio_nacimiento = anio_nacimiento;
+    this->anio_defuncion = anio_defuncion;
 }
 
-string Escritor ::  obtenerNombreApellido(){
-	return nombreApellido;
+Escritor::~Escritor(){};
+
+void Escritor::mostrar(){
+    cout << obtener_nombres() << endl;
 }
 
-string Escritor :: obtenerReferencia(){
-    return referencia;
+std::string Escritor::obtener_nombres() const{
+    return this->nombres_y_apellidos;
+}
+
+std::string Escritor::obtener_nacionalidad() const{
+    return nacionalidad;
+}
+
+void Escritor::cambiar_anio_defuncion( int nuevo_anio ){
+    anio_defuncion = nuevo_anio;
+}
+
+int Escritor::obtener_anio_nacimiento() const{
+    return this->anio_nacimiento;
+}
+
+int Escritor::obtener_anio_defuncion() const {
+    return this->anio_defuncion;
+}
+
+int Escritor::comparar(const Escritor* e2) const{
+    unsigned int anio1 = obtener_anio_nacimiento();
+    unsigned int anio2 = e2->obtener_anio_nacimiento();
+
+    if( anio1 < anio2)
+        return -1;
+    
+    if( anio1 > anio2)
+        return 1;
+    
+    return 0;
 }

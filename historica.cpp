@@ -1,35 +1,46 @@
 #include "historica.h"
+#include "novela.h"
+#include <iostream>
 
-Historica :: Historica (string _titulo, unsigned int _minutos, int _anio, string _autor,string _genero, string _tema):
-        Novela (_titulo, _minutos, _anio, _autor, _genero)
-{
-    long tamanioTema = _tema.length();
-    char* temaDinamico = new char[tamanioTema+1];
+//PRE: Recibe una cadena.
+//POS: Devuelve un char* en memoria dinamica, al finalizar debe liberarse la memoria.
 
-    for (int i = 0; i < tamanioTema; i++){
-        temaDinamico[i] = _tema[i];
-    }
+char* string_to_pchar(string string){
+    size_t tamagno = string.length();
+    char* nuevo = new char[tamagno + 1];
+    
+    for(size_t i = 0; i < tamagno; i++)
+        nuevo[i] = string[i];
 
-    this -> tema = temaDinamico;
+    nuevo[tamagno] = EOL;
+
+    return nuevo;
 }
 
-Historica::~Historica(){
-    delete[] tema;
+Historica::Historica(string titulo_lectura, unsigned int minutos, unsigned int anio, Escritor* autor, genero_t genero,string tema)
+    : Novela( titulo_lectura, minutos, anio, autor, genero){        
+        this->tema = string_to_pchar(tema);
 }
 
-void Historica :: mostrar(){
-    cout << "Titulo: " << obtenerTitulo() << endl;
-    cout << "Minutos: " << obtenerMinutos() << endl;
-    cout << "Anio: " << obtenerAnio() << endl;
-    cout << "Autor: " << obtenerAutor() << endl;
-    cout << "Genero: " << obtenerGenero() << endl;
-    cout << "Tema: " << tema << endl;
+Historica::~Historica(){};
+
+void Historica::borrar(){
+    delete []tema;
 }
 
-string Historica :: obtenerGenero(){
-    return this -> genero;
+char* Historica::obtener_tema(){
+    return this->tema;
 }
 
-char* Historica :: obtenerTema(){
-    return tema;
-}
+void Historica::mostrar(){
+    Novela::mostrar();
+    cout << "Tema: " << obtener_tema() << endl;
+} 
+
+    
+
+    
+
+
+
+

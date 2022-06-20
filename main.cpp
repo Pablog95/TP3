@@ -1,20 +1,43 @@
-#include "archivo.h"
-#include "menu.h"
+#include "lectura.h"
+#include "escritor.h"
+#include "historica.h"
+#include "novela.h"
+#include "poema.h"
+#include "cuento.h"
+#include "lista.h"
+#include "parser.h"
+#include "lector.h"
+#include "funciones.h"
+#include "constantes.h"
+#include "nodo.h"
+#include "cola.h"
 
-int main()
-{
-	Lista<Escritor> escritor;
-	Lista<Lectura> lecturas;
-	Cola<Lectura> colaLectura;
+int main(){
+   
+   Lector* escritor = new Lector;
 
-	Archivo a1(& escritor, & lecturas , & colaLectura);
-	Menu m1(& escritor, & lecturas, &colaLectura);
+   escritor->lectura_archivo_escritores();
+   escritor->leer_lectura();
 
-	a1.leerArchivoEscritor();
-	a1.leerArchivoLecturas();
-	m1.mostrarMenu();
+   Lista<Escritor*>* escritores = escritor->obtener_Lescritores();
+   Lista<Lectura*>* lecturas = escritor->obtener_Llecturas();
+   
+   escritores->listar();
+   lecturas->listar();
+  
 
-	
-    return 0;
-    
+   Parser* parser = new Parser(lecturas, escritores);
+   parser->opcion_seleccionada();
+
+   lecturas->destruir();
+   escritores->destruir();
+   
+   
+   delete escritor;
+   delete parser;
+   
+
+   
+
+   return 0;
 }

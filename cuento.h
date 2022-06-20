@@ -1,34 +1,57 @@
 #ifndef CUENTO_H
 #define CUENTO_H
+
 #include <iostream>
+#include <string>
+#include "escritor.h"
 #include "lectura.h"
 
 using namespace std;
 
-class Cuento : public Lectura
-{
-    private:
-        string tituloLibro;
+class Cuento : public Lectura{
+public:
 
-	public:
-        /*
-        Constructor
-        PRE: -
-        POS: construye una Clase Cuento
-        */
-		Cuento(string _titulo, unsigned int _minutos, int _anio, string _autor, string _tituloLibro);
+    /*
+    constructor con parametros
+    PRE: minutos > 0, anio > 0
+    POS: crea un cuento inicializada con sus atributos
+    */
+    Cuento(string titulo_lectura, unsigned int minutos, unsigned int anio, Escritor* autor, string libro);
+    
+    /*
+    Destructor
+    Pre : 
+    Post : 
+    */
+    ~Cuento();
 
-        //PRE: -
-        //POS: Muestra los datos de la clase
-		void mostrar();
+    /*
+    Pre : 
+    Post : borra la memoria dinamica asociada
+    */
+    void borrar(){};
 
-        //PRE: -
-        //POS: Devuelve el Genero
-		string obtenerGenero();
+    /*
+    Pre : -
+    Post : devuelve el titulo del libro donde se encuentra el cuento solicitado
+    */
+    string obtener_titulo_libro() const;
 
-        // Destructor
-        ~Cuento(){};
-		
-};
+    /*
+    Pre :  -
+    Post : imprime por pantalla el titulo, minutos, año, autor (si se lo conoce) y el nombre del libro del cuento
+    */
+    void mostrar() const;
+
+    /*
+    Pre : -
+    Post : -
+    */
+    void mostrar(string genero) const{};
+
+private:
+    string libro;    
+};           
+
 
 #endif

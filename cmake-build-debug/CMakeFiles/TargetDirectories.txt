@@ -1,0 +1,3 @@
+C:/Users/User/OneDrive/Escritorio/Nueva carpeta (6)/cmake-build-debug/CMakeFiles/Nueva_carpeta__6_.dir
+C:/Users/User/OneDrive/Escritorio/Nueva carpeta (6)/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/User/OneDrive/Escritorio/Nueva carpeta (6)/cmake-build-debug/CMakeFiles/rebuild_cache.dir

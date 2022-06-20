@@ -1,18 +1,24 @@
 #include "poema.h"
 
-Poema :: Poema(string _titulo, unsigned int _minutos, int _anio,string _autor, string _cantidadVersos) : Lectura(_titulo, _minutos, _anio, _autor){
-	this->cantidadVersos = _cantidadVersos;
+Poema::Poema(string titulo_lectura, unsigned int minutos, unsigned int anio, Escritor* autor, unsigned int versos)
+    : Lectura(titulo_lectura, minutos, anio, autor){
+        this->versos = versos;
 }
 
-void Poema :: mostrar(){
-
-	cout << "Titulo: " << obtenerTitulo() <<endl;
-	cout << "Minutos: " << obtenerMinutos() << endl;
-	cout << "Anio: " << obtenerAnio() << endl;
-	cout << "Autor: " << obtenerAutor() << endl;
-	cout << "Cantidad de versos: " << cantidadVersos << endl;
+unsigned int Poema::obtener_versos() const{
+    return this->versos; 
 }
 
-string Poema :: obtenerGenero(){
-	return "" ;
+void Poema::mostrar() const{
+    cout << "Titulo: " << obtener_titulo() << endl;
+    cout << "Minutos: " << obtener_minutos() << endl;
+    cout << "Año: " << obtener_anio() << endl;
+    
+    if(!obtener_autor())
+        cout << "Autor : ANONIMO" << endl;
+    else
+        cout << "Autor: " << obtener_autor()->obtener_nombres() << endl;
+    cout << "Cantidad de versos: " << obtener_versos() << endl;
 }
+  
+

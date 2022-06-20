@@ -1,69 +1,112 @@
 #ifndef NODO_H
 #define NODO_H
-#include <iostream>
+
 #include "escritor.h"
 #include "lectura.h"
+#include <string>
 
-using namespace std;
+template < typename Dato >
 
-template <class T>
-class Nodo
-{
-	private:
-		T* dato; // Dato.
-		Nodo<T>* siguiente; // Puntero a siguiente nodo.
+class Nodo {
+    // Atributos
+private:
+    Dato dato;
+    Nodo* siguiente;
+    Nodo* anterior;
+    // Metodos
+public:
+    /*
+    Constructor
+    PRE: -
+    POS: construye un Nodo con d como dato anterior en nullptr
+    */
+    Nodo(Dato d);
+    
+    /*
+    Destructor
+    PRE: - 
+    POS: -
+    */
+    ~Nodo(){};
+    
+    /*    
+    PRE: Nodo no puede ser NULL
+    POS: llama al metodo borrar del tipo de dato que este guardando
+    */    
+    void borrar();
+    
+    /*    
+    PRE: -
+    POS: el puntero al siguiente ahora apuntara al nodo n
+    */
+    void cambiar_siguiente(Nodo* n);
+    
+    /*    
+    PRE: -
+    POS: el puntero al anterior ahora apuntara al nodo b
+    */
+    void cambiar_anterior(Nodo* b);
+    
+    /*    
+    PRE: Nodo no puede ser NULL
+    POS: devuelve el dato que esta almacenado
+    */
+    Dato obtener_dato();
 
-	public:
-		
-		//Constructor.
-		//PRE: Puntero que apunta a algun dato.
-		//POST:	Crea nodo con el dato.
-		Nodo(T* _dato);
-	
-		//PRE: Nodo creado.
-		//POST: Modifica el nodo al siguiente.
-		void cambiarSiguiente(Nodo* _siguiente);
-		
-		//PRE: Nodo creado.
-		//POST: Devuelve el puntero del siguiente nodo. Si es el ultimo devuelve NULL.
-		Nodo<T>* obtenerSiguiente();
+    /*    
+    PRE: Nodo no puede ser NULL
+    POS: devuelve un puntero al Nodo siguiente
+    */
+    Nodo* obtener_siguiente();
 
-		//PRE: Nodo creado
-		//POST: Devuelve el dato del nodo.
-		T* obtenerDato();
-	
-		//Destructor.
-		//PRE: Nodo creado
-		//POST: Libera recursos.
-		~Nodo();
+    /*    
+    PRE: Nodo no puede ser NULL
+    POS: devuelve un puntero al Nodo siguiente
+    */
+    Nodo* obtener_anterior();    
+           
 };
 
 
-
-template <class T>
-Nodo<T> :: Nodo(T* _dato){
-	dato = _dato;
-	siguiente = 0;
+template < class Dato >
+Nodo<Dato>::Nodo(Dato d) {
+    dato = d;
+    siguiente = 0;
+    anterior = 0;
 }
 
-template <class T>
-Nodo<T> :: ~Nodo(){
-	delete dato;
+template < class Dato >
+void Nodo<Dato>::borrar(){
+    dato->borrar();
+};
+
+
+template < class Dato >
+void Nodo<Dato>::cambiar_siguiente(Nodo* n) {
+    siguiente = n;
 }
 
-template <class T>
-void Nodo<T> :: cambiarSiguiente (Nodo* _siguiente){
-	siguiente = _siguiente;
+template < class Dato >
+void Nodo<Dato>::cambiar_anterior(Nodo* b){
+    anterior = b;
 }
 
-template <class T>
-Nodo<T>* Nodo<T> :: obtenerSiguiente(){
-	return siguiente;
+
+template < class Dato >
+Dato Nodo<Dato>::obtener_dato() {
+    return dato;
 }
 
-template <class T>
-T* Nodo<T>::obtenerDato(){
-	return dato;
+template < class Dato >
+Nodo<Dato>* Nodo<Dato>::obtener_siguiente(){
+    return siguiente;
 }
 
-#endif
+
+template < class Dato >
+Nodo<Dato>* Nodo<Dato>::obtener_anterior(){
+    return anterior;
+}
+
+
+#endif // NODO_H_INCLUDED

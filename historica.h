@@ -1,43 +1,45 @@
 #ifndef HISTORICA_H
 #define HISTORICA_H
-#include <iostream>
+
 #include "novela.h"
-#include "lectura.h"
+#include "constantes.h"
 
-using namespace std;
+class Historica : public Novela{
+public:
+    /*
+    constructor con parametros
+    PRE: minutos > 0, anio > 0, genero debe ser un genero_t valido.
+    POS: Construye una lectura con sus respectivos atributos y reserva memoria dinamica para el tema
+    */
+    Historica (string titulo_lectura, unsigned int minutos, unsigned int anio, Escritor* autor, genero_t genero, string tema);
+    
+    /*
+    Destructor
+    PRE: -
+    POS: -
+    */
+    ~Historica();
+    
+    /*
+    PRE: Historica debe estar creada
+    POS: devuelve un puntero al tema
+    */
+    char* obtener_tema();
 
+    /*
+    PRE: Historica debe estar creada
+    POS: imprime por pantalla todos los atributos
+    */
+    void mostrar();
+    /*
+    PRE: Historica debe estar creada
+    POS: elimina toda la memoria dinamica asociada
+    */
+    void borrar();
 
-class Historica : public Novela
-{
-	private:
-		char* tema;
-
-	public:
-        /*
-        Constructor
-        PRE: -
-        POS: construye una Clase Historica
-        */
-		Historica(string _titulo, unsigned int _minutos, int _anio, string _autor, string _genero, string _tema);
-
-        //PRE: -
-        //POS: Muestra los datos de la clase
-		void mostrar();
-
-        //PRE: -
-        //POS: Devuelve el Genero
-		string obtenerGenero();
-
-        //PRE: -
-        //POS: Devuelva el tema de la novela
-        char* obtenerTema();
-
-        // Destructor
-	//PRE: -
-	//POST: Libera memoria del char Tema y recursos.
-        ~Historica();
-		
-		
+private:    
+    char* tema;
 };
+
 
 #endif
