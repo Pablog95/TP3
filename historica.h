@@ -10,11 +10,32 @@ using namespace std;
 class Historica : public Novela
 {
 	private:
-		string tema;
+		char* tema;
+
 	public:
-		Historica(string _titulo, string _minutos, string _anio, string _autor, string _genero, string _tema);
+        /*
+        Constructor
+        PRE: -
+        POS: construye una Clase Historica
+        */
+		Historica(string _titulo, unsigned int _minutos, int _anio, string _autor, string _genero, string _tema);
+
+        //PRE: -
+        //POS: Muestra los datos de la clase
 		void mostrar();
+
+        //PRE: -
+        //POS: Devuelve el Genero
 		string obtenerGenero();
+
+        //PRE: -
+        //POS: Devuelva el tema de la novela
+        char* obtenerTema();
+
+        // Destructor
+	//PRE: -
+	//POST: Libera memoria del char Tema y recursos.
+        ~Historica();
 		
 		
 };

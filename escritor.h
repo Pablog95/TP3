@@ -6,19 +6,41 @@ using namespace std;
 
 class Escritor
 {
+    private:
+
+        string referencia;
+        string nombreApellido;
+        string nacionalidad;
+        int anioNacimiento;
+        int anioFallecimiento;
+
 	public:
-		Escritor();
-		Escritor(string _nombreApellido, string _nacionalidad, string _anioNacimiento, string anioFallecimiento);
+		//Constructor.
+		//PRE: -
+		//POST: Inicializa Escritor con sus atributos.
+		Escritor(string referencia,string _nombreApellido, string _nacionalidad, int _anioNacimiento, int _anioFallecimiento);
+
+		//PRE: -
+		//POST: Muestra por pantalla los atributos.
 		void mostrarDatos();
-		string obtenerNombreApellido();
-		void cambiarFallecimiento();
-		~Escritor(){};
 		
-	private:
-		string nombreApellido;
-		string nacionalidad;
-		string anioNacimiento;
-		string anioFallecimiento;
+		//PRE: - 
+		//POST: Devuelve nombre y apellido.
+		string obtenerNombreApellido();
+
+		//PRE: Recibe anio valido.
+		//POST: Cambia el anio de Fallecimiento.
+		void cambiarFallecimiento();
+	
+		//PRE:-
+		//POST: Devuelve la referencia.
+        	string obtenerReferencia();
+	
+		//Destructor.
+		//PRE: -
+		//POST: Libera los recursos.
+		~Escritor(){};
+
 };
 
 #endif

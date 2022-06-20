@@ -7,12 +7,27 @@ using namespace std;
 
 class Poema : public Lectura
 {
-	public:
-		Poema(string _titulo, string _minutos, string _anio,string _autor, string _cantidadVersos);
+    private:
+        string cantidadVersos;
+
+    public:
+        /*
+        Constructor
+        PRE: -
+        POS: construye una Clase Poema
+        */
+		Poema(string _titulo, unsigned int _minutos, int _anio,string _autor, string _cantidadVersos);
+
+        //PRE: -
+        //POS: Muestralos datos de la clase la clase
 		void mostrar();
+
+        //PRE: -
+        //POS: Devuelve el Genero
 		string obtenerGenero();
-	private:
-		string cantidadVersos;
+
+        // Destructor
+        ~Poema(){};
 		
 };
 

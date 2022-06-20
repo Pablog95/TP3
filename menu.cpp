@@ -3,18 +3,21 @@
 #include <ctime>
 #include <stdlib.h>
 
+
 using namespace std;
 
 Menu :: Menu (Lista<Escritor>* escritores,Lista<Lectura>* lecturas, Cola<Lectura>* colaLectura){
-	this->escritores = escritores;
-	this->lecturas = lecturas;
-	this->colaLectura = colaLectura;
+	this -> escritores = escritores;
+	this -> lecturas = lecturas;
+	this -> colaLectura = colaLectura;
 	
 }
 
 void Menu :: mostrarMenu(){
 	
 	do{
+        system("cls");
+
 		cout << "----------------------------------------------------------------------------------------------------------" << endl;
 		cout << "          				--->>> MENU <<<---   "<< endl;
 		cout << "----------------------------------------------------------------------------------------------------------" << endl;
@@ -55,170 +58,310 @@ void Menu :: mostrarMenu(){
 		
 	}while (opcion != 12);
 }
+
+
 void Menu :: mostrarCola(){
-	int corte = 1;
-	cout << "Entra 1" << endl;
-	while(colaLectura->colaVacia() || corte == 0){
-		cout << "Entra 2" << endl;
-		colaLectura->obtenerDatoCola()->mostrar();
-		cout << "¿Quiere seguir mostrando cola? (Marque 0 para cortar)" << endl;
-		cin >> corte;
+
+    system("cls");
+    string salida;
+
+
+	while(salida != "s" && !colaLectura -> colaVacia()){
+
+		colaLectura -> obtenerDatoCola() -> mostrar();
+        cout << "Presione (s) si quiere dejar de eliminar lecturas."  << endl;
+        colaLectura -> bajaCola();
+        cin >> salida;
 	}
 }
+
 void Menu :: listaEscritores(){
-	
-	int tamanio = escritores->obtenerTamanio();
-	for (int i = 1; i <= tamanio; i++){
-		cout << i << ") ";
-		escritores->obtenerDato(i)->mostrarDatos();
-		cout << "-------" << endl;
-	}
+
+    system("cls");
+    string salida;
+
+    do {
+        int tamanio = escritores -> obtenerTamanio();
+
+        for (int i = 1; i <= tamanio; i++) {
+            cout << i << ") ";
+            escritores -> obtenerDato(i) -> mostrarDatos();
+            cout << "-------" << endl;
+        }
+
+        cout << "Presione (s) para salir" << endl;
+        cin >> salida;
+
+    }while((salida != "s"));
 }
 
 void Menu :: listaLectura(){
-	if (lecturas->listaVacia()){
-		cout << "La lista esta vacia." << endl;
-	}
-	int tamanio = lecturas->obtenerTamanio();
-	for (int i = 1; i <= tamanio; i++){
-		cout << i << ") ";
-		lecturas->obtenerDato(i)->mostrar();
-		cout << "-------" << endl;
-	}
+
+    system("cls");
+    string salida;
+
+    do {
+        if (lecturas -> listaVacia()) {
+            cout << "La lista esta vacia." << endl;
+        }
+        int tamanio = lecturas->obtenerTamanio();
+
+        for (int i = 1; i <= tamanio; i++) {
+            cout << i << ") ";
+            lecturas -> obtenerDato(i) -> mostrar();
+            cout << "-------" << endl;
+        }
+        cout << "Presione (s) para salir" << endl;
+        cin >> salida;
+
+    }while((salida != "s"));
 }
 
 void Menu :: listarNovelaGenero(){
-	int tamanio = lecturas->obtenerTamanio();
-	string genero;
-	cout << "Ingrese el genero que quiere listar: " << endl;
-	cin >> genero;
-	int contador = 0;
-	for (int i = 1 ; i <= tamanio; i++){
-		if(genero == lecturas->obtenerDato(i)->obtenerGenero()){
-			lecturas->obtenerDato(i)->mostrar();
-			contador++;
-		}
-	}
-	if (contador == 0){
-	cout << "No se encontro ninguna novela del genero elegido."<< endl;
-	}
+
+    system("cls");
+    string salida;
+
+    do {
+        int tamanio = lecturas->obtenerTamanio();
+        string genero;
+
+        cout << "Ingrese el genero de novela que quiere listar (Mayuscula): " << endl;
+        cin >> genero;
+
+        int contador = 0;
+        for (int i = 1; i <= tamanio; i++) {
+            if (genero == lecturas->obtenerDato(i)->obtenerGenero()) {
+                lecturas->obtenerDato(i)->mostrar();
+                contador++;
+            }
+        }
+        if (contador == 0) {
+            cout << "No se encontro ninguna novela del genero elegido." << endl;
+        }
+
+        cout << "Presione (s) para salir" << endl;
+        cin >> salida;
+
+    }while((salida != "s"));
 }
 
-
 void Menu :: agregarEscritores(){
+
+    system("cls");
+    string salida;
+
 	Escritor* nuevoEscritor = 0;
-	string nombreApellido, nacionalidad, anioNacimiento, anioFallecimiento;
-	cout << "Ingrese nombre y apellido: "<< endl;
-	cin >> nombreApellido;
-	cout <<"Ingrese nacionalidad: " << endl;
-	cin >> nacionalidad;
-	cout<<"Ingrese anio de nacimiento; "<< endl;
-	cin >> anioNacimiento;
-	cout <<"Ingrese anio de fallecimiento: " << endl;
-	cin >> anioFallecimiento;
-	nuevoEscritor = new Escritor (nombreApellido, nacionalidad, anioNacimiento, anioFallecimiento);
-	escritores-> agregarElemento(nuevoEscritor);
+
+	string nombreApellido, nacionalidad;
+    int anioNacimiento, anioFallecimiento;
+
+    do {
+        cout << "Ingrese nombre y apellido: " << endl;
+        cin.ignore();
+        getline(cin,nombreApellido);
+        cout << "Ingrese nacionalidad: " << endl;
+        cin >> nacionalidad;
+        cout << "Ingrese anio de nacimiento; " << endl;
+        cin >> anioNacimiento;
+        cout << "Ingrese anio de fallecimiento: " << endl;
+        cin >> anioFallecimiento;
+
+        nuevoEscritor = new Escritor("nuevo",nombreApellido, nacionalidad, anioNacimiento, anioFallecimiento);
+        escritores -> agregarElemento(nuevoEscritor);
+
+        cout << "Presione (s) para salir" << endl;
+        cin >> salida;
+
+    } while (salida != "s");
 }
 
 void Menu :: agregarLectura(){
-	Lectura* nuevaLectura = 0;
-	string tipo,titulo, minutos, anio, autor;
-	cout << "Ingrese el tipo de lectura. (CUENTO, NOVELA , HISTORICA, POEMA)" << endl;
-	cin >> tipo;
-	cout << "Ingrese el titulo de la lectura:"<< endl;
-	cin >> titulo;
-	cout << "Ingrese cuantos minutos dura: "<< endl;
-	cin >> minutos;
-	cout << "Ingrese en que anio fue escrita: " << endl;
-	cin >> anio;
-	cout << "Ingrese el autor: " << endl;
-	cin >> autor;
-	
-	while(tipo != "cuento" && tipo != "novela" && tipo != "poema" && tipo != "historica"){
-		cout << "La lectura no es valida."<< endl;
-		cin >> tipo;
-	}
-	if(tipo == "cuento"){
-		string tituloCuento;
-		cout << "Ingrese el titulo del libro: " << endl;
-		cin >> titulo;
-		nuevaLectura = new Cuento(titulo,minutos, anio, autor,tituloCuento);
-	}
-	if(tipo == "novela"){
-		string genero;
-		cout << "Ingrese el genero: " << endl;
-		cin >> genero;
-		if (genero == "historica"){
-			string tema;
-			cout << "Escriba de que trata la novela historica: " << endl;
-			cin >> tema;
-			nuevaLectura = new Historica(titulo, minutos, anio, autor, genero, tema);
-		}else{
-			nuevaLectura = new Novela(titulo, minutos, anio, autor, genero);
-		}
-		
-	}
-	if(tipo == "poema"){
-	string cantidadVersos;
-	cout << "Ingrese la cantidad de versos del poema: " << endl;
-	cin >> cantidadVersos;
-	nuevaLectura = new Poema(titulo, minutos, anio, autor, cantidadVersos);
-	}
-	lecturas-> agregarElemento(nuevaLectura);
-}
-void Menu :: borrarLectura(){
-	lecturas->borrarDato(1);
-	cout << "Una lectura fue borrada de la lista." << endl;
-}
-void Menu :: sortearLectura(){
-		int tamanio = lecturas->obtenerTamanio();
-		srand((unsigned) time(0));
-		int lecturaAleatoria = rand() % (tamanio); //Cambiar el 10 por el tamaño de la lista.
-	 	lecturas->obtenerDato(lecturaAleatoria)->mostrar();
 
+    system("cls");
+
+	Lectura* nuevaLectura = 0;
+	string tipo,titulo, autor,salida;
+    unsigned int minutos;
+    int anio;
+
+    do {
+        cout << "Ingrese el tipo de lectura. (cuento, novela , historica, poema)" << endl;
+        cin >> tipo;
+        cout << "Ingrese el titulo de la lectura:" << endl;
+        cin >> titulo;
+        cout << "Ingrese cuantos minutos dura: " << endl;
+        cin >> minutos;
+        cout << "Ingrese en que anio fue escrita: " << endl;
+        cin >> anio;
+        cout << "Ingrese el autor: " << endl;
+        cin.ignore();
+        getline(cin,autor);
+
+        if (tipo != "cuento" && tipo != "novela" && tipo != "poema" && tipo != "historica") {
+            cout << "La lectura no es valida." << endl;
+
+            cout << "Presione (s) para salir: ";
+            cin >> salida;
+        }
+        if (tipo == "cuento") {
+
+            string tituloCuento;
+
+            cout << "Ingrese el titulo del libro: " << endl;
+            cin >> titulo;
+
+            nuevaLectura = new Cuento(titulo, minutos, anio, autor, tituloCuento);
+        }
+        if (tipo == "novela") {
+
+            string genero;
+
+            cout << "Ingrese el genero: " << endl;
+            cin >> genero;
+
+            if (genero == "historica") {
+                string tema;
+
+                cout << "Escriba de que trata la novela historica: " << endl;
+                cin >> tema;
+
+                nuevaLectura = new Historica(titulo, minutos, anio, autor, genero, tema);
+            } else {
+                nuevaLectura = new Novela(titulo, minutos, anio, autor, genero);
+            }
+
+        }
+        if (tipo == "poema") {
+
+            string cantidadVersos;
+
+            cout << "Ingrese la cantidad de versos del poema: " << endl;
+            cin >> cantidadVersos;
+
+            nuevaLectura = new Poema(titulo, minutos, anio, autor, cantidadVersos);
+        }
+        lecturas->agregarElemento(nuevaLectura);
+
+        cout << "Se agrego la Lectura" << endl;
+        cout << "Presione (s) para salir: ";
+        cin >> salida;
+
+    }while (salida != "s");
+}
+
+void Menu :: borrarLectura(){
+
+    system("cls");
+    string salida;
+
+    do {
+        lecturas->borrarDato(1);
+        cout << "Una lectura fue borrada de la lista." << endl;
+
+        cout << "Presione (s) para salir" << endl;
+        cin >> salida;
+
+    }while (salida != "s");
+}
+
+void Menu :: sortearLectura(){
+
+    system("cls");
+    string salida;
+
+    do {
+        int tamanio = lecturas->obtenerTamanio();
+        srand((unsigned) time(0));
+        int lecturaAleatoria = rand() % (tamanio);
+        lecturas->obtenerDato(lecturaAleatoria)->mostrar();
+
+        cout << "Presione (s) para salir" << endl;
+        cin >> salida;
+
+    }while (salida != "s");
 }
 
 void Menu :: listarLecturaAnio(){
-	string anioUno, anioDos;
+
+    system("cls");
+    string salida;
+
+	int anioUno, anioDos;
 	int tamanio = lecturas->obtenerTamanio();
-	cout << "Ingrese dos anios: " << endl;
-	cout << "anio 1: " << endl;
-	cin >> anioUno;
-	cout << "anio 2: " << endl;
-	cin >> anioDos;
-	
-	if (anioUno<anioDos){
-	
-	for (int i = 0; i < tamanio; i++){
-		cout << "ingresa al for." << endl;
-		string anioLectura = lecturas->obtenerDato(i)->obtenerAnio();
-		if (anioUno < anioLectura && anioLectura < anioDos){
-			cout << "Ingresa al If"<< endl;
-			lecturas->obtenerDato(i)->mostrar();
-		}
-	}
-	}
+
+    do {
+        cout << "Ingrese dos anios: " << endl;
+        cout << "anio 1: " << endl;
+        cin >> anioUno;
+        cout << "anio 2: " << endl;
+        cin >> anioDos;
+
+        if (anioUno < anioDos) {
+
+            for (int i = 0; i < tamanio; i++) {
+
+
+                int anioLectura = lecturas->obtenerDato(i)->obtenerAnio();
+                if (anioUno < anioLectura && anioLectura < anioDos) {
+
+                    cout << "---------------------------"<< endl;
+                    lecturas -> obtenerDato(i) -> mostrar();
+                    cout << "---------------------------"<< endl;
+                }
+
+            }
+        }
+
+        cout << "Presione (s) para salir" << endl;
+        cin >> salida;
+
+    }while (salida != "s");
 	
 }
 
 void Menu :: listarLecturaEscritor(){
-	string ingresoAutor;
-	int tamanio = escritores->obtenerTamanio();
-	cout << "Ingrese un autor: " << endl;
-	cout << "Autor: " << endl;
-	cin >> ingresoAutor;
-	for (int i = 0; i < tamanio; i++){
-		string nombreEscritor= escritores->obtenerDato(i)->obtenerNombreApellido();
-		if (ingresoAutor == nombreEscritor){
-			escritores->obtenerDato(i)->mostrarDatos();
-		}
-	}	
+
+    system("cls");
+    string salida;
+
+    do {
+        string ingresoAutor;
+        int tamanio = escritores -> obtenerTamanio();
+
+        cout << "Ingrese un autor: " << endl;
+        cin.ignore();
+        getline(cin,ingresoAutor);
+
+        for (int i = 1; i <= tamanio + 1; i++) {
+            if (ingresoAutor == lecturas -> obtenerDato(i) -> obtenerAutor()) {
+
+                cout << "---------------------------"<< endl;
+                lecturas -> obtenerDato(i) -> mostrar();
+                cout << "---------------------------"<< endl;
+            }
+        }
+        cout << "Presione (s) para salir" << endl;
+        cin >> salida;
+
+    }while(salida != "s");
 }
 
 void Menu :: cambiarFallecimiento (){
-	int opcion;
-	cout << "Cambiar Fallecimiento: "<< endl;
-	cout << "Ingrese posicion del cambio de fecha: " << endl;
-	cin >> opcion;
-	escritores->obtenerDato(opcion)->cambiarFallecimiento();
+
+    system("cls");
+    string salida;
+
+    do {
+        int opcion;
+        cout << "Cambiar Fallecimiento: " << endl;
+        cout << "Ingrese posicion del cambio de fecha: ";
+        cin >> opcion;
+
+        escritores -> obtenerDato(opcion) -> cambiarFallecimiento();
+
+        cout << "Presione (s) para salir" << endl;
+        cin >> salida;
+
+    }while(salida !="s");
 }

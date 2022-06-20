@@ -19,15 +19,17 @@ class Archivo
 	private:
 		Lista<Escritor>* escritor;
 		Lista<Lectura>* lectura;
-		Cola<Lectura>* colaLectura;
-		//string datoSegunNarracion;
+		Cola<Lectura>* colaLectura;		
+		string datoSegunNarracion;
 	public:
-		Archivo(Lista<Escritor>* escritor,Lista<Lectura>* lectura);
+		Archivo(Lista<Escritor>* escritor,Lista<Lectura>* lectura, Cola<Lectura>* colaLectura);
 		ifstream archivo;
 		ifstream archivoLectura;
 		void leerArchivoEscritor();
 		void leerArchivoLecturas();
-		//string genero();
+        string compararReferencias(string,int);
+		int comparar(int,int);
+        ~Archivo(){};
 };
 
 #endif

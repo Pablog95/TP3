@@ -9,19 +9,43 @@ class Lectura
 {
 	protected:
 		string titulo;
-		string minutos;
-		string anio;
+		unsigned int minutos;
+		int anio;
 		string autor;
-		//NombreApellido* autor;
+
 	public:
-		Lectura (string _titulo, string _minutos, string _anio, string _autor);
-		//virtual void mostrarLectura() = 0;
+        /*
+        Constructor
+        PRE: -
+        POS: construye una Clase Lectura
+        */
+		Lectura (string _titulo, unsigned int _minutos, int _anio, string _autor);
+
+        //PRE: -
+        //POS: Devuelve el titulo
 		string obtenerTitulo();
-		string obtenerMinutos();
-		string obtenerAnio();
+
+        //PRE: -
+        //POS: Devuelve los minutos
+        unsigned int obtenerMinutos();
+
+        //PRE: -
+        //POS: Devuelve el anio
+		int obtenerAnio();
+
+        //PRE: -
+        //POS: Devuelve el autor
 		string obtenerAutor();
+
+        //PRE: -
+        //POS: Muestra los datos de la clase la clase
 		virtual void mostrar() = 0;
+
+        //PRE: -
+        //POS: Devuelve el Genero
 		virtual string obtenerGenero() = 0;
+
+        // Destructor
 		virtual ~Lectura(){};
 };
 

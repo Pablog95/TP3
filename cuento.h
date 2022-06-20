@@ -7,12 +7,27 @@ using namespace std;
 
 class Cuento : public Lectura
 {
+    private:
+        string tituloLibro;
+
 	public:
-		Cuento(string _titulo, string _minutos, string _anio, string _autor, string _tituloLibro);
+        /*
+        Constructor
+        PRE: -
+        POS: construye una Clase Cuento
+        */
+		Cuento(string _titulo, unsigned int _minutos, int _anio, string _autor, string _tituloLibro);
+
+        //PRE: -
+        //POS: Muestra los datos de la clase
 		void mostrar();
-		string obtenerGenero() ;
-	private:
-		string tituloLibro;
+
+        //PRE: -
+        //POS: Devuelve el Genero
+		string obtenerGenero();
+
+        // Destructor
+        ~Cuento(){};
 		
 };
 
