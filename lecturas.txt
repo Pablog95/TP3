@@ -1,0 +1,21 @@
+C 
+Casa Tomada 
+20 
+1951 
+Bestiario 
+(1)
+
+P
+Voy a dormir
+1
+1938
+14
+(4)
+
+N
+Frankestein
+1600
+1818
+TERROR
+(2)
+
