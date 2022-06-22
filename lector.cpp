@@ -56,7 +56,7 @@ void Lector :: lectura_archivo_escritores( ){
 
             completar_informacion_escritura();
     
-            Escritor* escritor = new Escritor(nombre_escritor, nacionalidad, string_a_int(anio_nacimiento), string_a_int(anio_fallecimiento));
+            Escritor* escritor = new Escritor(nombre_escritor, nacionalidad, stoi(anio_nacimiento), stoi(anio_fallecimiento));
             
             lista_escritores->alta_ultimo(escritor);  
                      
@@ -69,15 +69,15 @@ Lectura* Lector::procesador_entrada_lecturas(Escritor* escritor){
     
     if(tipo_lectura == "N"){
         if(caracteristica == "HISTORICA")
-            return (new Historica(titulo, string_a_int(minutos), string_a_int(anio), escritor, string_a_genero_t(caracteristica), tema));
+            return (new Historica(titulo, stoi(minutos), stoi(anio), escritor, string_a_genero_t(caracteristica), tema));
         else
-            return (new Novela(titulo, string_a_int(minutos), string_a_int(anio), escritor, string_a_genero_t(caracteristica)));
+            return (new Novela(titulo, stoi(minutos), stoi(anio), escritor, string_a_genero_t(caracteristica)));
     }
     else if(tipo_lectura == "C")        
-        return (new Cuento(titulo, string_a_int(minutos), string_a_int(anio),escritor, caracteristica));
+        return (new Cuento(titulo, stoi(minutos), stoi(anio),escritor, caracteristica));
     
     else //POEMA    
-        return (new Poema(titulo, string_a_int(minutos), string_a_int(anio), escritor, string_a_int(caracteristica)));
+        return (new Poema(titulo, stoi(minutos), stoi(anio), escritor, stoi(caracteristica)));
 }
 
 //no hay archivo vacio

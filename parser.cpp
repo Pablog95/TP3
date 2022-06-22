@@ -78,15 +78,15 @@ Lectura* Parser::procesador_entradaL(Escritor* escritor){
    
     if(tipo_lectura == "N"){
         if(caracteristica == "HISTORICA")
-            return (new Historica(titulo, string_a_int(minutos), string_a_int(anio), escritor, string_a_genero_t(caracteristica), tema));
+            return (new Historica(titulo, stoi(minutos), stoi(anio), escritor, string_a_genero_t(caracteristica), tema));
         else
-            return (new Novela(titulo, string_a_int(minutos), string_a_int(anio), escritor, string_a_genero_t(caracteristica)));
+            return (new Novela(titulo, stoi(minutos), stoi(anio), escritor, string_a_genero_t(caracteristica)));
     }
     else if(tipo_lectura == "C")        
-        return (new Cuento(titulo, string_a_int(minutos), string_a_int(anio),escritor, caracteristica));
+        return (new Cuento(titulo, stoi(minutos), stoi(anio),escritor, caracteristica));
     
     else //POEMA    
-        return (new Poema(titulo, string_a_int(minutos), string_a_int(anio), escritor, string_a_int(caracteristica)));
+        return (new Poema(titulo, stoi(minutos), stoi(anio), escritor, stoi(caracteristica)));
 }
 
 void Parser :: nueva_lectura(){
@@ -112,7 +112,7 @@ void Parser :: quitar_lectura( ){
         cout << "Que número de lectura desea quitar de la lista (contando desde arriba hacia abajo) : " << endl;
         cin >> n_lectura_quitar;
 
-        lecturas->baja(string_a_int(n_lectura_quitar));
+        lecturas->baja(stoi(n_lectura_quitar));
     }
     else
         cout << "La lista ya se encuentra vacia." << endl;
@@ -134,7 +134,7 @@ void Parser :: agregar_escritor( ){
     cin >> anio_fallecimiento;
 
     Escritor* escritor = 0;
-    escritor = new Escritor(nombre_escritor, nacionalidad, string_a_int(anio_nacimiento), string_a_int(anio_fallecimiento));
+    escritor = new Escritor(nombre_escritor, nacionalidad, stoi(anio_nacimiento), stoi(anio_fallecimiento));
 
     escritores->alta_ultimo(escritor);
 }
@@ -147,8 +147,8 @@ void Parser :: cambiar_dato_escritor( ){
     cout << "Ingrese el año de fallecimiento actualizado : " << endl;
     cin >> anio_fallecimiento;
 
-    Escritor* escritor = escritores->consulta(string_a_int(referencia_al_autor));
-    escritor->cambiar_anio_defuncion(string_a_int(anio_fallecimiento));
+    Escritor* escritor = escritores->consulta(stoi(referencia_al_autor));
+    escritor->cambiar_anio_defuncion(stoi(anio_fallecimiento));
 }
 
 void Parser :: listar_escritores(){
@@ -181,7 +181,7 @@ void Parser :: listar_lecturas_x_anios( ){
     cout << "Ingrese hasta que año desea listar las lecturas : " << endl;
     cin >> anio2;
 
-    lecturas->listar(string_a_int(anio1), string_a_int(anio2));
+    lecturas->listar(stoi(anio1), stoi(anio2));
 }
 
 void Parser :: listar_lecturas_x_escritor( ){

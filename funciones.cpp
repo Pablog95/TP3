@@ -2,9 +2,16 @@
 
 using namespace std;
 
+/*
 int  string_a_int( string string) {
-    return ( stoi(string));
-}
+
+    int hola = stoi(string);
+
+    cout<<"__________________"<<hola<<endl;
+
+
+    return hola;
+}*/
 
 genero_t string_a_genero_t(string genero){
             
@@ -31,6 +38,6 @@ int  autor_anonimo( string referencia_al_autor) {
         return (ANONIMO);
     }
     else{
-        return (string_a_int(referencia_al_autor));
+        return stoi(referencia_al_autor);
     }
 }
