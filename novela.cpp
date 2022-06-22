@@ -1,0 +1,44 @@
+#include "novela.h"
+
+Novela::Novela(string titulo_lectura, unsigned int minutos, unsigned int anio, Escritor* autor, genero_t genero)
+    : Lectura(titulo_lectura, minutos, anio, autor){
+        this->genero = genero;
+}
+
+genero_t Novela::obtener_genero() const{
+    return this->genero;
+}
+
+bool Novela::comparar(genero_t genero) const{
+    if(this->genero == genero)
+        return 1;
+    
+    return 0;
+}
+
+void Novela::mostrar() const{
+    cout << "Titulo: " << obtener_titulo() << endl;
+    cout << "Minutos: " << obtener_minutos() << endl;
+    cout << "Año: " << obtener_anio() << endl;
+    
+    if(!obtener_autor())
+        cout << "Autor : ANONIMO" << endl;
+    else 
+        cout << "Autor: " << obtener_autor()->obtener_nombres() << endl;
+
+    cout << "Genero: " << genero_t_cadena[obtener_genero()] << endl;
+       
+}
+
+void Novela::mostrar(string genero) const{
+    genero_t gen = string_a_genero_t(genero);
+    if (comparar(gen)){
+        mostrar();
+        cout << endl;
+    }
+}
+
+
+
+
+
