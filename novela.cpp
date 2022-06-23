@@ -1,5 +1,7 @@
 #include "novela.h"
 
+const char* genero_t_cadena[] = {"DRAMA","COMEDIA","FICCION","SUSPENSO","TERROR","ROMANTICA","HISTORICA"};
+
 Novela::Novela(string titulo_lectura, unsigned int minutos, unsigned int anio, Escritor* autor, genero_t genero)
     : Lectura(titulo_lectura, minutos, anio, autor){
         this->genero = genero;
