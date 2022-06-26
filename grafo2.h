@@ -13,7 +13,7 @@ class Grafo2 {
 
 private:
     T* matrizAdyacencia;
-    ListaGrafo<Vertice2>* vertices;
+    ListaGrafo<T>* vertices;
 
     void agrandarMatrizAdyacencia();
     void copiarMatrizAdyacencia(int **nuevaAdyacente);
@@ -32,7 +32,7 @@ public:
 template <class T>
 Grafo2<T> ::Grafo2() {
     matrizAdyacencia = nullptr;
-    vertices = new ListaGrafo<Vertice2>();
+    vertices = new ListaGrafo<T>();
 }
 
 
