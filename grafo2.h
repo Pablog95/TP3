@@ -10,12 +10,12 @@ const char* vector_tipos[4] = {"P","C","N","H"};
 using namespace std;
 
 
-template <class T>
+template <class Dato>
 class Grafo2 {
 
 private:
-    T* matrizAdyacencia;
-    ListaGrafo<T>* vertices;
+    Dato* matrizAdyacencia;
+    ListaGrafo<Dato>* vertices;
 
     void agrandarMatrizAdyacencia();
     void copiarMatrizAdyacencia(int **nuevaAdyacente);
@@ -24,8 +24,8 @@ private:
 
 public:
     Grafo2();
-    void agregarVertice(T* verticeNuevo);
-    void agregarArista(T* origen, T* destino, int peso);
+    void agregarVertice(Dato* verticeNuevo);
+    void agregarArista(Dato* origen, Dato* destino, int peso);
     int devolver_peso(int i, int j);
     int posiciones_matriz_peso(char* dato);
     void mostrarGrafo();
@@ -33,15 +33,15 @@ public:
 };
 
 
-template <class T>
-Grafo2<T> ::Grafo2() {
+template <class Dato>
+Grafo2<Dato> ::Grafo2() {
     matrizAdyacencia = nullptr;
-    vertices = new ListaGrafo<T>();
+    vertices = new ListaGrafo<Dato>();
 }
 
 
-template <class T>
-void Grafo2<T> :: agrandarMatrizAdyacencia(){
+template <class Dato>
+void Grafo2<Dato> :: agrandarMatrizAdyacencia(){
     int ** auxMatrix;
     int nuevaCantidadVertice = vertices->obtenerCantidadElementos() + 1;
 
@@ -56,8 +56,8 @@ void Grafo2<T> :: agrandarMatrizAdyacencia(){
 }
 
 
-template <class T>
-void Grafo2<T> :: copiarMatrizAdyacencia(int **nuevaAdyacente){
+template <class Dato>
+void Grafo2<Dato> :: copiarMatrizAdyacencia(int **nuevaAdyacente){
     for(int i = 0; i<vertices->obtenerCantidadElementos(); i++){
         for (int j = 0; j < vertices->obtenerCantidadElementos(); j++)
             nuevaAdyacente[i][j] = matrizAdyacencia[i][j];
@@ -65,8 +65,8 @@ void Grafo2<T> :: copiarMatrizAdyacencia(int **nuevaAdyacente){
 }
 
 
-template <class T>
-void Grafo2<T> ::agregarNuevoVertice(int **nuevaAdyacente){
+template <class Dato>
+void Grafo2<Dato> ::agregarNuevoVertice(int **nuevaAdyacente){
     for(int i = 0; i<vertices->obtenerCantidadElementos(); i++){
         nuevaAdyacente[vertices->obtenerCantidadElementos()][i] = 99999999;
         nuevaAdyacente[i][vertices->obtenerCantidadElementos()] = 99999999;
@@ -75,8 +75,8 @@ void Grafo2<T> ::agregarNuevoVertice(int **nuevaAdyacente){
 }
 
 
-template <class T>
-void Grafo2<T> :: liberarMatrizAdyacencia(){
+template <class Dato>
+void Grafo2<Dato> :: liberarMatrizAdyacencia(){
     for(int i = 0; i < vertices->obtenerCantidadElementos(); i++){
         delete[] matrizAdyacencia[i];
     }
@@ -84,15 +84,15 @@ void Grafo2<T> :: liberarMatrizAdyacencia(){
 }
 
 
-template <class T>
-void Grafo2<T> :: agregarVertice(T* verticeNuevo){
+template <class Dato>
+void Grafo2<Dato> :: agregarVertice(Dato* verticeNuevo){
     agrandarMatrizAdyacencia();
     vertices->agregarElementos(verticeNuevo);
 }
 
 
-template <class T>
-void Grafo2<T> :: agregarArista(T* origen, T* destino, int peso){
+template <class Dato>
+void Grafo2<Dato> :: agregarArista(Dato* origen, Dato* destino, int peso){
     int posicionOrigen = vertices->obtenerPosicion(origen);
     int posicionDestino = vertices->obtenerPosicion(destino);
 
@@ -110,14 +110,14 @@ void Grafo2<T> :: agregarArista(T* origen, T* destino, int peso){
 
 }
 
-template <class T>
-int Grafo2<T> :: devolver_peso(int i, int j){
+template <class Dato>
+int Grafo2<Dato> :: devolver_peso(int i, int j){
 
     return matriz_pesos[i][j];
 }
 
-template <class T>
-int Grafo2<T> :: posiciones_matriz_peso(char* dato){
+template <class Dato>
+int Grafo2<Dato> :: posiciones_matriz_peso(char* dato){
 
     for (int i = 0; i < 4; i++){
         if (vector_tipos[i] == dato){
@@ -127,8 +127,8 @@ int Grafo2<T> :: posiciones_matriz_peso(char* dato){
 }
 
 
-template <class T>
-void Grafo2<T> :: mostrarGrafo(){
+template <class Dato>
+void Grafo2<Dato> :: mostrarGrafo(){
     return;
 }
 

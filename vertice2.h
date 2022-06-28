@@ -5,14 +5,14 @@
 using namespace std;
 
 
-template <class T>
+template <class Dato>
 class Vertice2 {
 private:
-    T* nombre;
+    Dato* nombre;
 
 public:
-    Vertice2(T* nombre);
-    T* obtenerNombre();
+    Vertice2(Dato* nombre);
+    Dato* obtenerNombre();
 
     ~Vertice2();
 

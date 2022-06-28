@@ -1,16 +1,15 @@
 #ifndef TP_3_HASHING_H
 #define TP_3_HASHING_H
 
-#include "lista.h"
 #include "escritor.h"
 
 const int TAMANIO = 29; //Tamanio de la lista, dato sacado de calcular t = datosAIngresar / 0.8. y buscando el primer numero primo superior mas cercano.
 
-template <class T>
+template <class Dato>
 class Hashing {
 	
 private:
-	T* tablaEscritor[TAMANIO];
+	Dato* tablaEscritor[TAMANIO];
 	bool datoEncontrado[TAMANIO];
 	Lista<Escritor>* listaEscritores;
 	
@@ -20,17 +19,14 @@ public:
 	
 	//DESTRUCTOR
 	~Hashing();
-	void agregarEscritor(T* escritor, int clave);
-	T* mostrarHashing(int posicion);
+	void agregarEscritor(Dato* escritor, int clave);
+	Dato* mostrarHashing(int posicion);
 	int obtenerPosicionClave(int clave);
-	
-
 
 };
 
-
-template <class T>
-Hashing<T>::Hashing(){
+template <class Dato>
+Hashing<Dato>::Hashing(){
 	for (int i = 0; i < TAMANIO; i++)
 	{
 		tablaEscritor[i] = nullptr;
@@ -39,27 +35,27 @@ Hashing<T>::Hashing(){
 	this->listaEscritores = new Lista<Escritor>;
 }
 
-template<class T>
-void Hashing<T>::agregarEscritor(T* escritor, int clave){
+template<class Dato>
+void Hashing<Dato>::agregarEscritor(Dato* escritor, int clave){
 	int posicion = obtenerPosicionClave(clave);
 	
 	if(tablaEscritor[posicion] == nullptr)
 	{
 		tablaEscritor[posicion] = escritor;
-	}else{
+	}/*else{
 		
 		tablaEscritor[posicion] = listaEscritores->agregarElemento(escritor);
-	}
+	}*/
 }
 
 
-template<class T> 
-int Hashing<T>::obtenerPosicionClave(int clave){
+template<class Dato>
+int Hashing<Dato>::obtenerPosicionClave(int clave){
 	return clave%TAMANIO;
 }
 
-template <class T>
-T* Hashing<T> :: mostrarHashing(int posicion){
+template <class Dato>
+Dato* Hashing<Dato> :: mostrarHashing(int posicion){
 	if (datoEncontrado[posicion] == true){
 		return tablaEscritor[posicion];
 	}else{
@@ -68,8 +64,8 @@ T* Hashing<T> :: mostrarHashing(int posicion){
 	
 }
 
-template<class T>
-Hashing<T> :: ~Hashing(){
+template<class Dato>
+Hashing<Dato> :: ~Hashing(){
 	for(int i = 0; i < TAMANIO; i++)
 	{
 		delete tablaEscritor[i];

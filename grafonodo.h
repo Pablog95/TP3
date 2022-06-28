@@ -3,46 +3,46 @@
 #include <iostream>
 using namespace std;
 
-template <class T>
+template <class Dato>
 class GrafoNodo {
 private:
-    T* elemento;
-    GrafoNodo<T>* siguiente;
+    Dato* elemento;
+    GrafoNodo<Dato>* siguiente;
 
 public:
 
     GrafoNodo(string nombre);
-    GrafoNodo<T>* obtenerSiguiente();
+    GrafoNodo<Dato>* obtenerSiguiente();
     string obtenerNombre();
-    void cambiarSiguiente(GrafoNodo<T> * siguiente);
+    void cambiarSiguiente(GrafoNodo<Dato> * siguiente);
     ~GrafoNodo();
 
 
 };
 
-template <class T>
-GrafoNodo<T> ::GrafoNodo(string nombre) {
-    elemento = new T(nombre);
+template <class Dato>
+GrafoNodo<Dato> ::GrafoNodo(string nombre) {
+    elemento = new Dato(nombre);
     siguiente = nullptr;
 }
 
-template <class T>
-GrafoNodo<T>* GrafoNodo<T> ::obtenerSiguiente() {
+template <class Dato>
+GrafoNodo<Dato>* GrafoNodo<Dato> ::obtenerSiguiente() {
     return siguiente;
 }
 
-template <class T>
-string GrafoNodo<T> ::obtenerNombre() {
+template <class Dato>
+string GrafoNodo<Dato> ::obtenerNombre() {
     return elemento->obtenerNombre();
 }
 
-template <class T>
-void GrafoNodo<T> ::cambiarSiguiente(GrafoNodo<T> *siguiente) {
+template <class Dato>
+void GrafoNodo<Dato> ::cambiarSiguiente(GrafoNodo<Dato> *siguiente) {
     this->siguiente = siguiente;
 }
 
-template <class T>
-GrafoNodo<T> :: ~GrafoNodo() {
+template <class Dato>
+GrafoNodo<Dato> :: ~GrafoNodo() {
     delete elemento;
 }
 
