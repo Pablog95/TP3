@@ -10,7 +10,7 @@ public:
     PRE: minutos > 0, anio > 0, versos > 0
     POS: inicializa atributos
     */
-    Poema(string titulo_lectura, unsigned int minutos, unsigned int anio, Escritor* autor, unsigned int versos);
+    Poema(string tipo_lectura,string titulo_lectura, unsigned int minutos, unsigned int anio, Escritor* autor, unsigned int versos);
     
     /*
     Destructor

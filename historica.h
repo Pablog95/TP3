@@ -10,7 +10,7 @@ public:
     PRE: minutos > 0, anio > 0, genero debe ser un genero_t valido.
     POS: Construye una lectura con sus respectivos atributos y reserva memoria dinamica para el tema
     */
-    Historica (string titulo_lectura, unsigned int minutos, unsigned int anio, Escritor* autor, genero_t genero, string tema);
+    Historica (string tipo_lectura, string titulo_lectura, unsigned int minutos, unsigned int anio, Escritor* autor, genero_t genero, string tema);
     
     /*
     Destructor
