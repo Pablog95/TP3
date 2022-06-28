@@ -22,7 +22,7 @@ public:
 	~Hashing();
 	void agregarEscritor(T* escritor, int clave);
 	T* mostrarHashing(int posicion);
-	int obtenerPosicionClave(clave);
+	int obtenerPosicionClave(int clave);
 	
 
 
