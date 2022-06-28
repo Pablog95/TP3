@@ -32,10 +32,10 @@ template <class T>
 Hashing<T>::Hashing(){
 	for (int i = 0; i < TAMANIO; i++)
 	{
-		escritor[TAMANIO] = nullptr;
-		datoEncontrado[TAMANIO] = false;
+		tablaEscritor[i] = nullptr;
+		datoEncontrado[i] = false;
 	}
-	this->listaEscritores = new Lista<Escritor>
+	this->listaEscritores = new Lista<Escritor>;
 }
 
 template<class T>
