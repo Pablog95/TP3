@@ -5,6 +5,8 @@
 #include "vertice2.h"
 #include "lectura.h"
 
+const char* vector_tipos[4] = {"P","C","N","H"};
+
 using namespace std;
 
 
@@ -24,6 +26,8 @@ public:
     Grafo2();
     void agregarVertice(T* verticeNuevo);
     void agregarArista(T* origen, T* destino, int peso);
+    int devolver_peso(int i, int j);
+    int posiciones_matriz_peso(char* dato);
     void mostrarGrafo();
 
 };
@@ -105,6 +109,23 @@ void Grafo2<T> :: agregarArista(T* origen, T* destino, int peso){
     }
 
 }
+
+template <class T>
+int Grafo2<T> :: devolver_peso(int i, int j){
+
+    return matriz_pesos[i][j];
+}
+
+template <class T>
+int Grafo2<T> :: posiciones_matriz_peso(char* dato){
+
+    for (int i = 0; i < 4; i++){
+        if (vector_tipos[i] == dato){
+            return i;
+        }
+    }
+}
+
 
 template <class T>
 void Grafo2<T> :: mostrarGrafo(){
