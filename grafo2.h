@@ -11,7 +11,7 @@ using namespace std;
 
 
 template <class Dato>
-class Grafo2 {
+class Grafo {
 
 private:
     Dato* matrizAdyacencia;
@@ -23,7 +23,7 @@ private:
     void liberarMatrizAdyacencia();
 
 public:
-    Grafo2();
+    Grafo();
     void agregarVertice(Dato* verticeNuevo);
     void agregarArista(Dato* origen, Dato* destino, int peso);
     int devolver_peso(int i, int j);
@@ -34,14 +34,14 @@ public:
 
 
 template <class Dato>
-Grafo2<Dato> ::Grafo2() {
+Grafo<Dato> ::Grafo() {
     matrizAdyacencia = nullptr;
     vertices = new ListaGrafo<Dato>();
 }
 
 
 template <class Dato>
-void Grafo2<Dato> :: agrandarMatrizAdyacencia(){
+void Grafo<Dato> :: agrandarMatrizAdyacencia(){
     int ** auxMatrix;
     int nuevaCantidadVertice = vertices->obtenerCantidadElementos() + 1;
 
@@ -57,7 +57,7 @@ void Grafo2<Dato> :: agrandarMatrizAdyacencia(){
 
 
 template <class Dato>
-void Grafo2<Dato> :: copiarMatrizAdyacencia(int **nuevaAdyacente){
+void Grafo<Dato> :: copiarMatrizAdyacencia(int **nuevaAdyacente){
     for(int i = 0; i<vertices->obtenerCantidadElementos(); i++){
         for (int j = 0; j < vertices->obtenerCantidadElementos(); j++)
             nuevaAdyacente[i][j] = matrizAdyacencia[i][j];
@@ -66,7 +66,7 @@ void Grafo2<Dato> :: copiarMatrizAdyacencia(int **nuevaAdyacente){
 
 
 template <class Dato>
-void Grafo2<Dato> ::agregarNuevoVertice(int **nuevaAdyacente){
+void Grafo<Dato> ::agregarNuevoVertice(int **nuevaAdyacente){
     for(int i = 0; i<vertices->obtenerCantidadElementos(); i++){
         nuevaAdyacente[vertices->obtenerCantidadElementos()][i] = 99999999;
         nuevaAdyacente[i][vertices->obtenerCantidadElementos()] = 99999999;
@@ -76,7 +76,7 @@ void Grafo2<Dato> ::agregarNuevoVertice(int **nuevaAdyacente){
 
 
 template <class Dato>
-void Grafo2<Dato> :: liberarMatrizAdyacencia(){
+void Grafo<Dato> :: liberarMatrizAdyacencia(){
     for(int i = 0; i < vertices->obtenerCantidadElementos(); i++){
         delete[] matrizAdyacencia[i];
     }
@@ -85,14 +85,14 @@ void Grafo2<Dato> :: liberarMatrizAdyacencia(){
 
 
 template <class Dato>
-void Grafo2<Dato> :: agregarVertice(Dato* verticeNuevo){
+void Grafo<Dato> :: agregarVertice(Dato* verticeNuevo){
     agrandarMatrizAdyacencia();
     vertices->agregarElementos(verticeNuevo);
 }
 
 
 template <class Dato>
-void Grafo2<Dato> :: agregarArista(Dato* origen, Dato* destino, int peso){
+void Grafo<Dato> :: agregarArista(Dato* origen, Dato* destino, int peso){
     int posicionOrigen = vertices->obtenerPosicion(origen);
     int posicionDestino = vertices->obtenerPosicion(destino);
 
@@ -111,13 +111,13 @@ void Grafo2<Dato> :: agregarArista(Dato* origen, Dato* destino, int peso){
 }
 
 template <class Dato>
-int Grafo2<Dato> :: devolver_peso(int i, int j){
+int Grafo<Dato> :: devolver_peso(int entrada, int destino){
 
-    return matriz_pesos[i][j];
+    return matriz_pesos[entrada][destino];
 }
 
 template <class Dato>
-int Grafo2<Dato> :: posiciones_matriz_peso(char* dato){
+int Grafo<Dato> :: posiciones_matriz_peso(char* dato){
 
     for (int i = 0; i < 4; i++){
         if (vector_tipos[i] == dato){
@@ -128,7 +128,7 @@ int Grafo2<Dato> :: posiciones_matriz_peso(char* dato){
 
 
 template <class Dato>
-void Grafo2<Dato> :: mostrarGrafo(){
+void Grafo<Dato> :: mostrarGrafo(){
     return;
 }
 

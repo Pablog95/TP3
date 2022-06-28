@@ -11,7 +11,7 @@ class Hashing {
 private:
 	Dato* tablaEscritor[TAMANIO];
 	bool datoEncontrado[TAMANIO];
-	Lista<Escritor>* listaEscritores;
+	Lista<Escritor*>* listaEscritores;
 	
 public:
 	//CONSTRUCTOR
@@ -42,10 +42,9 @@ void Hashing<Dato>::agregarEscritor(Dato* escritor, int clave){
 	if(tablaEscritor[posicion] == nullptr)
 	{
 		tablaEscritor[posicion] = escritor;
-	}/*else{
-		
-		tablaEscritor[posicion] = listaEscritores->agregarElemento(escritor);
-	}*/
+	}else{
+		tablaEscritor[posicion] = listaEscritores->alta_ultimo(escritor);
+	}
 }
 
 

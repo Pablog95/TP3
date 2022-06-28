@@ -15,8 +15,6 @@ public:
     Dato* obtenerNombre();
 
     ~Vertice2();
-
-
 };
 
 
