@@ -2,8 +2,8 @@
 
 const char* genero_t_cadena[] = {"DRAMA","COMEDIA","FICCION","SUSPENSO","TERROR","ROMANTICA","HISTORICA"};
 
-Novela::Novela(string titulo_lectura, unsigned int minutos, unsigned int anio, Escritor* autor, genero_t genero)
-    : Lectura(titulo_lectura, minutos, anio, autor){
+Novela::Novela(string tipo_lectura, string titulo_lectura, unsigned int minutos, unsigned int anio, Escritor* autor, genero_t genero)
+    : Lectura(tipo_lectura, titulo_lectura, minutos, anio, autor){
         this->genero = genero;
 }
 
@@ -19,6 +19,7 @@ bool Novela::comparar(genero_t genero) const{
 }
 
 void Novela::mostrar() const{
+    cout << "Tipo de Lectura: " << obtener_tipo() << endl;
     cout << "Titulo: " << obtener_titulo() << endl;
     cout << "Minutos: " << obtener_minutos() << endl;
     cout << "Año: " << obtener_anio() << endl;

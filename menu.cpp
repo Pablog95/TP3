@@ -11,15 +11,15 @@ Lectura* Menu::procesador_entradaL(Escritor* escritor){
 
     if(tipo_lectura == "N"){
         if(caracteristica == "HISTORICA")
-            return (new Historica(titulo, stoi(minutos), stoi(anio), escritor, string_a_genero_t(caracteristica), tema));
+            return (new Historica(tipo_lectura, titulo, stoi(minutos), stoi(anio), escritor, string_a_genero_t(caracteristica), tema));
         else
-            return (new Novela(titulo, stoi(minutos), stoi(anio), escritor, string_a_genero_t(caracteristica)));
+            return (new Novela(tipo_lectura, titulo, stoi(minutos), stoi(anio), escritor, string_a_genero_t(caracteristica)));
     }
     else if(tipo_lectura == "C")
-        return (new Cuento(titulo, stoi(minutos), stoi(anio),escritor, caracteristica));
+        return (new Cuento(tipo_lectura, titulo, stoi(minutos), stoi(anio),escritor, caracteristica));
 
     else //POEMA
-        return (new Poema(titulo, stoi(minutos), stoi(anio), escritor, stoi(caracteristica)));
+        return (new Poema(tipo_lectura, titulo, stoi(minutos), stoi(anio), escritor, stoi(caracteristica)));
 }
 
 void Menu :: nueva_lectura(){

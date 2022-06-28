@@ -11,7 +11,7 @@ public:
     PRE: minutos > 0, anio > 0, versos > 0, genero debe ser valido
     POS: crea una Novela inicializada con sus atributos
     */
-    Novela(string titulo_lectura, unsigned int minutos, unsigned int anio, Escritor* autor, genero_t genero);
+    Novela(string tipo_lectura, string titulo_lectura, unsigned int minutos, unsigned int anio, Escritor* autor, genero_t genero);
     /*    
     PRE: -
     POS: devuelve el genero de la novela

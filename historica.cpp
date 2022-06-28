@@ -17,8 +17,8 @@ char* string_to_pchar(string string){
     return nuevo;
 }
 
-Historica::Historica(string titulo_lectura, unsigned int minutos, unsigned int anio, Escritor* autor, genero_t genero,string tema)
-    : Novela( titulo_lectura, minutos, anio, autor, genero){        
+Historica::Historica(string tipo_lectura, string titulo_lectura, unsigned int minutos, unsigned int anio, Escritor* autor, genero_t genero,string tema)
+    : Novela( tipo_lectura, titulo_lectura, minutos, anio, autor, genero){
         this->tema = string_to_pchar(tema);
 }
 

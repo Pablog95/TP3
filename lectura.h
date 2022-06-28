@@ -11,7 +11,7 @@ public:
     PRE: minutos > 0, anio > 0
     POS: Construye una lectura con sus respectivos atributos
     */
-    Lectura(string titulo_lectura, unsigned int minutos, unsigned int anio, Escritor* autor);
+    Lectura(string tipo_lectura, string titulo_lectura, unsigned int minutos, unsigned int anio, Escritor* autor);
     
     /*
     Destructor
@@ -76,8 +76,15 @@ public:
     */
     Escritor* obtener_autor() const;
 
+    /*
+    PRE: Lectura debe estar creada;
+    POS: devuelve el titulo de la lectura,
+    */
+    string obtener_tipo() const;
+
 protected:
     
+    string tipo_lectura;
     string titulo;
     unsigned int minutos;
     unsigned int anio;

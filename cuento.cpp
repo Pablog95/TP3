@@ -1,7 +1,7 @@
 #include "cuento.h"
 
-Cuento::Cuento(string titulo_lectura, unsigned int minutos, unsigned int anio, Escritor* autor,string libro)
-    : Lectura(titulo_lectura, minutos, anio, autor){
+Cuento::Cuento(string tipo_lectura, string titulo_lectura, unsigned int minutos, unsigned int anio, Escritor* autor,string libro)
+    : Lectura(tipo_lectura, titulo_lectura, minutos, anio, autor){
         this->libro = libro;
 }
 
@@ -12,6 +12,7 @@ string Cuento::obtener_titulo_libro() const{
 }
 
 void Cuento::mostrar() const{
+    cout << "Tipo de Lectura: " << obtener_tipo() << endl;
     cout << "Titulo: " << obtener_titulo() << endl;
     cout << "Minutos: " << obtener_minutos() << endl;
     cout << "Año: " << obtener_anio() << endl;

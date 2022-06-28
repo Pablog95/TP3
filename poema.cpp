@@ -1,7 +1,7 @@
 #include "poema.h"
 
-Poema::Poema(string titulo_lectura, unsigned int minutos, unsigned int anio, Escritor* autor, unsigned int versos)
-    : Lectura(titulo_lectura, minutos, anio, autor){
+Poema::Poema(string tipo_lectura, string titulo_lectura, unsigned int minutos, unsigned int anio, Escritor* autor, unsigned int versos)
+    : Lectura(tipo_lectura, titulo_lectura, minutos, anio, autor){
         this->versos = versos;
 }
 
@@ -10,6 +10,7 @@ unsigned int Poema::obtener_versos() const{
 }
 
 void Poema::mostrar() const{
+    cout << "Tipo de Lectura: " << obtener_tipo() << endl;
     cout << "Titulo: " << obtener_titulo() << endl;
     cout << "Minutos: " << obtener_minutos() << endl;
     cout << "Año: " << obtener_anio() << endl;

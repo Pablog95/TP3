@@ -11,7 +11,7 @@ public:
     PRE: minutos > 0, anio > 0
     POS: crea un cuento inicializada con sus atributos
     */
-    Cuento(string titulo_lectura, unsigned int minutos, unsigned int anio, Escritor* autor, string libro);
+    Cuento(string tipo_lectura, string titulo_lectura, unsigned int minutos, unsigned int anio, Escritor* autor, string libro);
     
     /*
     Destructor
