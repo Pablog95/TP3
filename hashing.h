@@ -21,6 +21,7 @@ public:
 	//DESTRUCTOR
 	~Hashing();
 	void agregarEscritor(T* escritor, int clave);
+	T* mostrarHashing(int posicion);
 	int obtenerPosicionClave(clave);
 	
 
@@ -55,6 +56,16 @@ void Hashing<T>::agregarEscritor(T* escritor, int clave){
 template<class T> 
 int Hashing<T>::obtenerPosicionClave(int clave){
 	return clave%TAMANIO;
+}
+
+template <class T>
+T* Hashing<T> :: mostrarHashing(int posicion){
+	if (datoEncontrado[posicion] == true){
+		return tablaEscritor[posicion];
+	}else{
+		cout << "No hay elementos" << endl;
+	}
+	
 }
 
 template<class T>
