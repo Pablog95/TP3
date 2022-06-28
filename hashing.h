@@ -35,7 +35,7 @@ Hashing<T>::Hashing(){
 		escritor[TAMANIO] = nullptr;
 		datoEncontrado[TAMANIO] = false;
 	}
-	this->listaLectura = new Lista<Escritor>
+	this->listaEscritores = new Lista<Escritor>
 }
 
 template<class T>
@@ -47,7 +47,7 @@ void Hashing<T>::agregarEscritor(T* escritor, int clave){
 		tablaEscritor[posicion] = escritor;
 	}else{
 		
-		tablaEscritor[posicion] = listaLectura->agregarElemento(escritor);
+		tablaEscritor[posicion] = listaEscritores->agregarElemento(escritor);
 	}
 }
 
@@ -64,6 +64,7 @@ Hashing<T> :: ~Hashing(){
 		delete tablaEscritor[i];
 	}
 	
+	delete listaEscritores;
 }
 
 
