@@ -3,140 +3,136 @@
 
 #include "lista.h"
 #include "escritor.h"
+
 #include <list>
 
-const int TAMANIO = 29; //Tamanio de la lista, dato sacado de calcular t = datosAIngresar / 0.8. y buscando el primer numero primo superior mas cercano.
+const int TAMANIO = 29; //Datoamanio de la lista, dato sacado de calcular t = datosAIngresar / 0.8. y buscando el primer numero primo superior mas cercano.
 
-template <class T>
+template <class Dato>
 class Hashing {
-	
+
 private:
-	T* tablaEscritor[TAMANIO];
-	bool datoEncontrado[TAMANIO];
-	Lista<Escritor>* listaEscritores;
-	list<Escritor>* listaEscritoresTabla;
-	
+    Dato* tabla_escritor[TAMANIO];
+    bool dato_encontrado[TAMANIO];
+    Lista<Escritor*>* lista_escritores;
+    Lista<Escritor*>* lista_escritores_tabla;
+
 public:
-	//CONSTRUCTOR
-	Hashing();
-	
-	//DESTRUCTOR
-	~Hashing();
-	void agregarEscritor(T* escritor, int clave);
-	int obtenerPosicionClave(int clave);
-	//T* mostrarHashing(int posicion);
-	void mostrarHashing();
+    //CONSDatoRUCDatoOR
+    Hashing();
+
+    //DESDatoRUCDatoOR
+    ~Hashing();
+    void agregar_escritor(Dato* escritor, int clave);
+    int obtener_posicion_clave(int clave);
+    //Dato* mostrar_hashing(int posicion);
+    void mostrar_hashing();
 
 };
 
 
-template <class T>
+template <class Dato>
 
 
-Hashing<T>::Hashing(){
-	for (int i = 0; i < TAMANIO; i++)
-	{
-		tablaEscritor[i] = nullptr;
-		datoEncontrado[i] = false;
-	}
-	this->listaEscritores = new Lista<Escritor>[TAMANIO];
-	listaEscritoresTabla = new list<Escritor>[TAMANIO];
+Hashing<Dato>::Hashing(){
+    for (int i = 0; i < TAMANIO; i++)
+    {
+        tabla_escritor[i] = nullptr;
+        dato_encontrado[i] = false;
+    }
+    this->lista_escritores = new Lista <Escritor>[TAMANIO];
+    lista_escritores_tabla = new Lista <Escritor*>[TAMANIO];
 }
 
 /*
-template<class T>
-Hashing<T>::Hashing(){
-	
-	this->listaEscritores = new Lista<Escritor>[TAMANIO];
+template<class Dato>
+Hashing<Dato>::Hashing(){
+
+	this->lista_escritores = new Lista<Escritor>[TAMANIO];
 }*/
 
 /*
-template<class T>
-void Hashing<T>::agregarEscritor(T* escritor, int clave){
-	int posicion = obtenerPosicionClave(clave);
-
-	listaEscritores[posicion].agregarElemento(escritor,posicion);
+template<class Dato>
+void Hashing<Dato>::agregar_escritor(Dato* escritor, int clave){
+	int posicion = obtener_posicion_clave(clave);
+	lista_escritores[posicion].agregar_elemento(escritor,posicion);
 	}
 */
 
 
-template<class T>
-void Hashing<T>::agregarEscritor(T* escritor, int clave){
-	int posicion = obtenerPosicionClave(clave);
-	
-	if(tablaEscritor[posicion] == nullptr)
-		{
-		tablaEscritor[posicion] = escritor;
-		datoEncontrado[posicion] = true;
-	}else{
-		listaEscritoresTabla[posicion].push_back(*escritor);
-	
-	}
-	/*listaEscritores[posicion].agregarElemento(escritor);
-	datoEncontrado[posicion] = true;
-	
-	if(tablaEscritor[posicion] == nullptr)
-	{
-		tablaEscritor[posicion] = escritor;
-		datoEncontrado[posicion] = true;
-	}else{
-		
-		tablaEscritor[posicion] = listaEscritores->agregarElemento(escritor);
-	}*/
+template<class Dato>
+void Hashing<Dato>::agregar_escritor(Dato* escritor, int clave){
+    int posicion = obtener_posicion_clave(clave);
+
+    if(tabla_escritor[posicion] == nullptr)
+    {
+        tabla_escritor[posicion] = escritor;
+        dato_encontrado[posicion] = true;
+    }else{
+        lista_escritores_tabla[posicion].push_back(*escritor);
+
+    }
+    /*lista_escritores[posicion].agregar_elemento(escritor);
+    dato_encontrado[posicion] = true;
+
+    if(tabla_escritor[posicion] == nullptr)
+    {
+        tabla_escritor[posicion] = escritor;
+        dato_encontrado[posicion] = true;
+    }else{
+
+        tabla_escritor[posicion] = lista_escritores->agregar_elemento(escritor);
+    }*/
 }
 
 
-template<class T> 
-int Hashing<T>::obtenerPosicionClave(int clave){
-	return clave%TAMANIO;
+template<class Dato>
+int Hashing<Dato>::obtener_posicion_clave(int clave){
+    return clave%TAMANIO;
 }
 /*
-template<class T>
-T Hashing<T> :: mostrarHashing(int posicion){
-	return listaEscritores[posicion];
-
+template<class Dato>
+Dato Hashing<Dato> :: mostrar_hashing(int posicion){
+	return lista_escritores[posicion];
 }*/
 /*
-template <class T>
-T* Hashing<T> :: mostrarHashing(int posicion){
-	if (datoEncontrado[posicion] == true){
-		return tablaEscritores[posicion];
+template <class Dato>
+Dato* Hashing<Dato> :: mostrar_hashing(int posicion){
+	if (dato_encontrado[posicion] == true){
+		return tabla_escritores[posicion];
 	}else{
 		cout << "No hay elementos" << endl;
 	}
-	
+
 }*/
 
-template <class T>
-void Hashing<T> :: mostrarHashing(){
-	for(int i = 0; i < TAMANIO; i++){
-		cout << i << ")";
-		if(datoEncontrado[i] == true){
-			tablaEscritor[i]->mostrarDatos();
-		}
-		//tablaEscritor[i]->mostrarDatos();
-		for (auto x: listaEscritoresTabla[i]){
-			//tablaEscritor[i]->mostrarDatos();
-			cout << endl;
-			x.mostrarDatos();
-		}
-		cout << endl;
-	}
-		//listaEscritores[i].mostrarDatos();
+template <class Dato>
+void Hashing<Dato> :: mostrar_hashing(){
+    //if (dato_encontrado[posicion] == true){
+    for(int i = 0; i<TAMANIO; i++){
+        cout << i << endl;
+        for (auto x: lista_escritores_tabla[i]){
+            tabla_escritor[i]->mostrar_datos();
+            x.mostrar_datos();
+        }
+        cout << endl;
+        //lista_escritores[i].mostrar_datos();
+    }
+    /*}else{
+        cout << "No hay elementos" << endl;
+    }*/
+
 }
-	/*}else{
-		cout << "No hay elementos" << endl;
-}*/
 
-template<class T>
-Hashing<T> :: ~Hashing(){
-	for(int i = 0; i < TAMANIO; i++)
-	{
-		delete tablaEscritor[i];
-	}
-	
-	delete listaEscritores;
-	
+template<class Dato>
+Hashing<Dato> :: ~Hashing(){
+    for(int i = 0; i < TAMANIO; i++)
+    {
+        delete tabla_escritor[i];
+    }
+
+    delete lista_escritores;
+
 }
 
 
