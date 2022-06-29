@@ -1,8 +1,10 @@
 #include "lector2.h"
 
-Lector :: Lector(){
+Lector :: Lector(Hashing<Escritor*>* escritor_hashing){
     lista_escritores = new Lista <Escritor*>;
     lista_lecturas = new Lista <Lectura*>;
+    this->escritor_hashing = escritor_hashing;
+    //this->grafo = new Grafo<Lectura>;
     
 }
 
@@ -56,7 +58,8 @@ void Lector :: lectura_archivo_escritores( ){
     
             Escritor* escritor = new Escritor(nombre_escritor, nacionalidad, stoi(anio_nacimiento), stoi(anio_fallecimiento), stoi(n_escritor));
             
-            lista_escritores->alta_ultimo(escritor);  
+            lista_escritores->alta_ultimo(escritor);
+            escritor_hashing -> agregar_escritor(&escritor, stoi(n_escritor));
                      
         }
     }
