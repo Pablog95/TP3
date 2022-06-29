@@ -109,21 +109,24 @@ T* Hashing<T> :: mostrarHashing(int posicion){
 
 template <class T>
 void Hashing<T> :: mostrarHashing(){
-	//if (datoEncontrado[posicion] == true){
-	for(int i = 0; i<TAMANIO; i++){
-		cout << i << endl;
-		for (auto x: listaEscritoresTabla[i]){
+	for(int i = 0; i < TAMANIO; i++){
+		cout << i << ")";
+		if(datoEncontrado[i] == true){
 			tablaEscritor[i]->mostrarDatos();
+		}
+		//tablaEscritor[i]->mostrarDatos();
+		for (auto x: listaEscritoresTabla[i]){
+			//tablaEscritor[i]->mostrarDatos();
+			cout << endl;
 			x.mostrarDatos();
 		}
 		cout << endl;
-		//listaEscritores[i].mostrarDatos();
 	}
+		//listaEscritores[i].mostrarDatos();
+}
 	/*}else{
 		cout << "No hay elementos" << endl;
-	}*/
-	
-}
+}*/
 
 template<class T>
 Hashing<T> :: ~Hashing(){
