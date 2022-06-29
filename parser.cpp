@@ -20,7 +20,8 @@ void imprimir_menu() {
     cout << "9- Listar las lecturas de un determinado escritor" << endl;
     cout << "10- Listar las novelas de determinado genero." << endl;
     cout << "11- Armar una cola ordenada." << endl;
-    cout << "12- Salir." << endl;
+    cout << "12 - Hashing. " << endl;
+    cout << "13- Salir." << endl;
     cout << "----------------------------------------------------------------------------------------------------------"
          << endl;
     cout << "----------------------------------------------------------------------------------------------------------"
