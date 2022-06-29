@@ -32,7 +32,7 @@ public:
     Pre : -
     Post : imprime por pantalla el nombre y apellido del escritor
     */
-    void mostrar();
+    void mostrar_datos();
 
     /*
     Pre : -

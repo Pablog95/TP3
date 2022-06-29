@@ -15,7 +15,7 @@ private:
     Dato* tabla_escritor[TAMANIO];
     bool dato_encontrado[TAMANIO];
     Lista<Escritor*>* lista_escritores;
-    Lista<Escritor*>* lista_escritores_tabla;
+    list<Escritor*>* lista_escritores_tabla;
 
 public:
     //CONSDatoRUCDatoOR
@@ -41,7 +41,7 @@ Hashing<Dato>::Hashing(){
         dato_encontrado[i] = false;
     }
     this->lista_escritores = new Lista <Escritor>[TAMANIO];
-    lista_escritores_tabla = new Lista <Escritor*>[TAMANIO];
+    lista_escritores_tabla = new list <Escritor*>[TAMANIO];
 }
 
 /*
@@ -112,8 +112,8 @@ void Hashing<Dato> :: mostrar_hashing(){
     for(int i = 0; i<TAMANIO; i++){
         cout << i << endl;
         for (auto x: lista_escritores_tabla[i]){
-            tabla_escritor[i]->mostrar_datos();
-            x.mostrar_datos();
+            tabla_escritor[i] -> mostrar_datos();
+            x->mostrar_datos();
         }
         cout << endl;
         //lista_escritores[i].mostrar_datos();

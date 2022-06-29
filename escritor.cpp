@@ -10,7 +10,7 @@ Escritor::Escritor( string nombres, string nacionalidad, int anio_nacimiento, in
 
 Escritor::~Escritor(){}
 
-void Escritor::mostrar(){
+void Escritor::mostrar_datos(){
     cout << "ISNI :  " << obtener_isni() << endl;
     cout << obtener_nombres() << endl;
     mostrar_anios_y_nacionalidades();
