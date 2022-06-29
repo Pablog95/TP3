@@ -1,8 +1,9 @@
 #ifndef MENU_H
 #define MENU_H
 
-#include "lector.h"
+#include "lector2.h"
 #include "parser.h"
+#include "hashing.h"
 
 class Menu {
 
@@ -10,6 +11,7 @@ private :
 
     Lista <Escritor*>* escritores;
     Lista <Lectura*>* lecturas;
+    Hashing<Escritor*>* escritor_hashing;
 
     string tipo_lectura = "";
     string titulo = "";
@@ -37,7 +39,7 @@ public :
     POS: crea un objeto de tipo parser
     */
 
-    Menu (Lista <Lectura*>*, Lista <Escritor*>*);
+    Menu (Lista <Lectura*>*, Lista <Escritor*>*, Hashing<Escritor*>* escritor_hashing);
 
     /*
     Pre : los atributos y parametros usados son correctos
@@ -129,6 +131,9 @@ public :
     Post : devuelve una cola ordenada de menor (primero) a mayor (ultimo) por tiempo de lectura
     */
     void cola_ordenada();
+
+
+    void mostrar_hashing();
 
     /*
     Pre : el numero ingresado es correcto
