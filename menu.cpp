@@ -1,8 +1,9 @@
 #include "menu.h"
 
-Menu :: Menu(Lista <Lectura*>* lista_lectura, Lista <Escritor*>* lista_escritor){
+Menu :: Menu(Lista <Lectura*>* lista_lectura, Lista <Escritor*>* lista_escritor, Hashing<Escritor*>* escritor_hashing){
     escritores = lista_escritor;
     lecturas = lista_lectura;
+    this->escritor_hashing = escritor_hashing;
 }
 
 Menu:: ~Menu(){}
@@ -114,7 +115,16 @@ void Menu :: cola_ordenada(){
 
 }
 
-void Menu :: implementacion_menu( ){
+void Menu :: mostrar_hashing() {
+    /*
+    for (int i = 0; i <= TAMANIO; i++){
+        cout << i << ")";
+        escritorHashing->mostrarHashing(i)->mostrarDatos();
+    }*/
+    escritor_hashing->mostrar_hashing();
+}
+
+void Menu :: implementacion_menu(){
 
     imprimir_menu();
     ingresar_numero(&numero);
@@ -153,8 +163,10 @@ void Menu :: implementacion_menu( ){
         case 11: ;//cola_ordenada();
             break;
 
-        case 12:
-            salir = true;
+        case 12: mostrar_hashing();
+            break;
+
+        case 13: salir = true;
             break;
 
         default: cout << "Usted a ingresado una opción incorrecta" << endl;
