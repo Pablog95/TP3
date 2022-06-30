@@ -121,7 +121,7 @@ void Menu :: mostrar_hashing() {
         cout << i << ")";
         escritorHashing->mostrarHashing(i)->mostrarDatos();
     }*/
-    escritor_hashing->mostrar_hashing();
+    //escritor_hashing->mostrar_hashing();
 }
 
 void Menu :: implementacion_menu(){

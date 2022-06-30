@@ -3,6 +3,7 @@
 
 #include "nodo.h"
 
+
 template < typename Dato >
 
 class Lista {

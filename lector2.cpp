@@ -1,99 +1,138 @@
-#ifndef LECTOR_H
-#define LECTOR_H
+#include "lector2.h"
 
-#include "historica.h"
-#include "poema.h"
-#include "cuento.h"
-#include "grafo2.h"
-#include "hashing.h"
-
-class Lector{
-
-private :
-
-    ifstream archivo_lecturas;
-    ifstream archivo_escritores;
-
-    Lista <Escritor*>* lista_escritores;
-    Lista <Lectura*>* lista_lecturas;
+Lector :: Lector(Hashing<Escritor*>* escritor_hashing, Grafo grafo){
+    lista_escritores = new Lista <Escritor*>;
+    lista_lecturas = new Lista <Lectura*>;
+    this->escritor_hashing = escritor_hashing;
+    this->grafo = Grafo();
     
-    string tipo_lectura = "";
-    string titulo = "";
-    string minutos = "";
-    string anio = "";
-    string caracteristica = "";
-    string referencia_al_autor = "";
-    string espacio = "";
-    string tema = "";
-    string nombre_escritor = "";
-    string nacionalidad = "";
-    string anio_nacimiento = "";
-    string anio_fallecimiento = "";
-    string n_escritor = "";
+}
 
-    Grafo<Lectura*> grafo;
-    Hashing<Escritor*>* escritor_hashing;
+Lector :: ~Lector(){
+    lista_lecturas->destruir();
+    lista_escritores->destruir();
+    
+    delete lista_escritores;
+    delete lista_lecturas;
 
-public :
+    archivo_lecturas.close();
+    archivo_escritores.close();
+}
 
-    /*
-    Constructor
-    Pre : -
-    Post : Crea la clase Lector y pide memoria para los punteros a las lecturas
-    */
-    Lector(Hashing<Escritor*>* escritor_hashing);
+void Lector :: completar_informacion_escritura(){
+    
+    if(getline(archivo_escritores, anio_nacimiento) && anio_nacimiento != ""){
+        
+        if(getline(archivo_escritores, anio_fallecimiento) && anio_fallecimiento != ""){
+            
+            if(anio_nacimiento != "-1")
+                getline(archivo_escritores, espacio);
+            else
+                getline(archivo_escritores, espacio);
+        }
+        else
+            anio_fallecimiento = "-1";                
+    }
+    else{
+        anio_nacimiento = "-1";
+        anio_fallecimiento = "-1";
+    }
+}
 
-    /*
-    Pre : los datos tomados del archivo son correctos
-    Post : revisa si se conocen o no los años de nacimiento y fallecimiento
-    */
-    void completar_informacion_escritura();
+void Lector :: lectura_archivo_escritores( ){
 
-    /*
-    Pre : los datos tomados del archivo son correctos
-    Post : completa una lista de escritores basada en un archivo
-    */
-    void lectura_archivo_escritores( );
+    archivo_escritores.open("archivoE.h");
+    
 
-    /*
-    Pre : los atributos y parametros recibidos son correctos
-    Post : devuelve una Lectura* según el tipo de lectura 
-    */
-    Lectura* procesador_entrada_lecturas(Escritor* escritor);
+    if (!archivo_escritores)
+        cout << "El archivo no se pudo abrir porque no se encuentra o está dañado" << endl;
 
-    /*
-    Pre : los datos tomados del archivo son correctos
-    Post : completa la lista de lecturas ordeanda por años basada en un archivo
-    */
-    void leer_lectura();
+    else{
+        
+        while(getline(archivo_escritores, n_escritor)){
 
-    /*
-    PRE:  los valores pasados por parametros son correctos
-      la cadena referencia_al_autor debe contener una posicion de la lista de escritores
-      1 <= pos <= escritores.obtener_cantidad() o la palabra ANONIMO
-    POS:  Devuelve la posicion, en la lista de escritores, del escritor. En caso de ser anonimo
-      retorna -1
-*/
-    int  autor_anonimo( string referencia_al_autor);
+            getline(archivo_escritores, nombre_escritor);
+            getline(archivo_escritores, nacionalidad);
 
-    /*
-    Pre : -
-    Post : devuelve un puntero a la lista de escritores
-    */
-    Lista<Escritor*>* obtener_Lescritores();
+            completar_informacion_escritura();
+    
+            Escritor* escritor = new Escritor(nombre_escritor, nacionalidad, stoi(anio_nacimiento), stoi(anio_fallecimiento), stoi(n_escritor));
+            
+            lista_escritores->alta_ultimo(escritor);
+            //escritor_hashing -> agregar_escritor(&escritor, stoi(n_escritor));
+                     
+        }
+    }
+} 
 
-    /*
-    Pre : -
-    Post : devuelve un puntero a la lista de lecturas
-    */
-    Lista<Lectura*>* obtener_Llecturas();
+//tipo_lectura es si o si correcta : NOVELA, CUENTO, POEMA
+Lectura* Lector::procesador_entrada_lecturas(Escritor* escritor){
 
 
-    /*
-    Pre : - 
-    Post : Cierra los archivos y elimina toda memoria dinamica asociada a Lector
-    */
-   ~Lector();
-};
+    if(tipo_lectura == "N"){
+        if(caracteristica == "HISTORICA") {
+            return (new Historica(tipo_lectura,titulo, stoi(minutos), stoi(anio), escritor, string_a_genero_t(caracteristica),tema));
+        }
+        else
 
-#endif //LECTOR_H
+            return (new Novela(tipo_lectura, titulo, stoi(minutos), stoi(anio), escritor, string_a_genero_t(caracteristica)));
+    }
+    else if(tipo_lectura == "C")        
+        return (new Cuento(tipo_lectura, titulo, stoi(minutos), stoi(anio),escritor, caracteristica));
+    
+    else //POEMA    
+        return (new Poema(tipo_lectura, titulo, stoi(minutos), stoi(anio), escritor, stoi(caracteristica)));
+}
+
+//no hay archivo vacio
+void Lector :: leer_lectura(){
+    
+    archivo_lecturas.open("archivoL.h");
+
+    if (!archivo_lecturas)
+        cout << "El archivo no se pudo abrir porque no se encuentra o está dañado" << endl;
+
+    else{
+
+        Lectura* lectura = 0;
+
+        while(getline(archivo_lecturas, tipo_lectura)){
+
+            getline(archivo_lecturas, titulo);
+            getline(archivo_lecturas, minutos);
+            getline(archivo_lecturas, anio);
+            getline(archivo_lecturas, caracteristica);
+
+            if(caracteristica == "HISTORICA")
+                getline(archivo_lecturas, tema);
+
+            getline(archivo_lecturas, referencia_al_autor);
+
+            lectura = procesador_entrada_lecturas(lista_escritores->consulta(autor_anonimo(referencia_al_autor)));
+
+            getline(archivo_lecturas, espacio);
+
+            //lista_lecturas->insercion_ordenada(lectura);
+            grafo.agregarVertice(lectura);
+        }
+    }
+}
+
+int  Lector :: autor_anonimo( string referencia_al_autor) {
+
+    if (referencia_al_autor == "ANONIMO"){
+        return (ANONIMO);
+    }
+    else{
+        return (stoi(referencia_al_autor));
+    }
+}
+
+
+Lista<Escritor*>* Lector::obtener_Lescritores(){
+    return lista_escritores;
+}
+
+Lista<Lectura*>* Lector::obtener_Llecturas(){
+    return lista_lecturas;
+}

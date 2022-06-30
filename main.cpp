@@ -1,10 +1,16 @@
 #include "menu.h"
+#include "grafo.h"
 
 int main(){
 
     //Cola<Lectura> colaLectura;
+
+    Grafo grafo;
     Hashing<Escritor*>* tabla_escritor;
-    Lector* escritor = new Lector(tabla_escritor);
+    Lector* escritor = new Lector(tabla_escritor, grafo);
+
+    grafo.completar_matriz_adyacencia();
+    //grafo.mostrarGrafo();
 
 
    escritor->lectura_archivo_escritores();
@@ -29,7 +35,7 @@ int main(){
    
    delete escritor;
    delete menu;
-   
+
 
    
 

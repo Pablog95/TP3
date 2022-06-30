@@ -4,7 +4,8 @@
 #include "historica.h"
 #include "poema.h"
 #include "cuento.h"
-#include "grafo2.h"
+#include "grafo.h"
+#include "hashing.h"
 
 class Lector{
 
@@ -30,7 +31,8 @@ private :
     string anio_fallecimiento = "";
     string n_escritor = "";
 
-    Grafo<Lectura*> grafo;
+    Grafo grafo;
+    Hashing<Escritor*>* escritor_hashing;
 
 public :
 
@@ -39,7 +41,7 @@ public :
     Pre : -
     Post : Crea la clase Lector y pide memoria para los punteros a las lecturas
     */
-    Lector();
+    Lector(Hashing<Escritor*>* escritor_hashing, Grafo grafo);
 
     /*
     Pre : los datos tomados del archivo son correctos
@@ -53,7 +55,7 @@ public :
     */
     void lectura_archivo_escritores( );
 
-        /*
+    /*
     Pre : los atributos y parametros recibidos son correctos
     Post : devuelve una Lectura* según el tipo de lectura 
     */
