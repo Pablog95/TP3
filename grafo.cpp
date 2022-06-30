@@ -33,7 +33,7 @@ int Grafo:: posiciones_matriz_peso(string tipo){
 
 void Grafo::completar_matriz_adyacencia() {
     
-    int i, j = 0;
+    //int i, j = 0;
     string vertice_actual = "";
     string vertice_aux = "";
 

@@ -14,18 +14,26 @@ add_executable(Nueva_carpeta__6_
         escritor.h
         funciones.cpp
         funciones.h
+        grafo.cpp
+        grafo.h
+        hashing.h
         historica.cpp
         historica.h
-        lector.cpp
-        lector.h
+        lector2.cpp
+        lector2.h
         lectura.cpp
         lectura.h
         lista.h
+        lista_grafo.h
         main.cpp
+        menu.cpp
         nodo.h
+        nodo_grafo.h
         novela.cpp
         novela.h
         parser.cpp
         parser.h
         poema.cpp
-        poema.h)
+        poema.h
+        vertice_grafo.cpp
+        vertice_grafo.h)
