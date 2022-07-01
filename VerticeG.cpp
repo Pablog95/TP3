@@ -1,4 +1,4 @@
-#include "vertice_grafo.h"
+#include "verticeG.h"
 
 Vertice::Vertice(Lectura* nombre) {
     this -> nombre = nombre;

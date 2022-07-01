@@ -2,7 +2,7 @@
 #define GRAFO_H
 
 
-#include "ListaG.hi"
+#include "ListaG.h"
 #include "VerticeG.h"
 #include "Constantes.h"
 
