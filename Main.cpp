@@ -25,7 +25,7 @@ int main(){
    //Menu m1(& escritor, & lecturas, &colaLectura, & tablaEscritor);
   
 
-   Menu* menu = new Menu(escritores, tabla_escritor, grafo);
+   Menu* menu = new Menu(escritores, tabla_hashing, grafo);
    //menu->implementacion_menu();
 
     //Prim* prim = new Prim(grafo->obtener_matriz_adyacencia(), grafo->obtener_vertices_totales());
