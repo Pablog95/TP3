@@ -91,6 +91,7 @@ public :
     /*
     Pre : -
     Post: Devuelve un puntero a la tabla hashing
+    */
     Hashing<Escritor>* obtener_tabla();
 
     /*
