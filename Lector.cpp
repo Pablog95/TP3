@@ -1,9 +1,9 @@
 #include "Lector.h"
 
-Lector :: Lector(Hashing<Escritor*>* escritor_hashing, Grafo* grafo){
+Lector :: Lector(Grafo* grafo){
     lista_escritores = new Lista <Escritor*>;
     lista_lecturas = new Lista <Lectura*>;
-    this->escritor_hashing = escritor_hashing;
+    escritor_hashing = escritor_hashing;
     this->grafo = grafo;
 }
 
@@ -113,6 +113,7 @@ void Lector :: leer_lectura(){
 
             //lista_lecturas->insercion_ordenada(lectura);
             grafo->agregarVertice(lectura);
+            escritor_hashing -> agregar_escritor(escritor, stoi(n_escritor));
         }
     }
 }
@@ -134,4 +135,8 @@ Lista<Escritor*>* Lector::obtener_Lescritores(){
 
 Lista<Lectura*>* Lector::obtener_Llecturas(){
     return lista_lecturas;
+}
+
+Hashing<Escritor>* Lector :: obtener_tabla(){
+	return escritor_hashing;
 }
