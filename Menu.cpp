@@ -6,7 +6,7 @@ Menu :: Menu(Lista <Escritor*>* lista_escritor, Hashing<Escritor*>* escritor_has
     this->grafo = grafo;
 }
 /*
-Menu :: Menu(Lista <Lectura*>* lista_lectura, Lista <Escritor*>* lista_escritor, Hashing<Escritor*>* escritor_hashing){
+Menu :: Menu(Lista <Lectura*>* lista_lectura, Lista <Escritor*>* lista_escritor, Hashing<Escritor>* escritor_hashing){
     escritores = lista_escritor;
     lecturas = lista_lectura;
     this->escritor_hashing = escritor_hashing;
@@ -67,6 +67,7 @@ void Menu :: agregar_escritor( ){
     escritor = new Escritor(nombre_escritor, nacionalidad, stoi(anio_nacimiento), stoi(anio_fallecimiento), stoi(referencia_al_autor));
 
     escritores->alta_ultimo(escritor);
+    escritor_hashing->agregar_escritor(escritor,stoi(referencia_al_autor));
 }
 
 void Menu :: cambiar_dato_escritor( ){
@@ -125,12 +126,7 @@ void Menu :: listar_novelas_x_genero( ){
 }
 
 void Menu :: mostrar_hashing() {
-    /*
-    for (int i = 0; i <= TAMANIO; i++){
-        cout << i << ")";
-        escritorHashing->mostrarHashing(i)->mostrarDatos();
-    }*/
-    //escritor_hashing->mostrar_hashing();
+    escritor_hashing->mostrar_hashing();
 }
 
 void Menu :: implementacion_menu(){
