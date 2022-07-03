@@ -108,7 +108,7 @@ Tipo* ListaG<Tipo>::obtener_elemento(int posicion) {
         i++;
     }
     return (auxiliar->obtener_dato());
-    
+
 }
 
 #endif //GRAFOS_LISTA_H

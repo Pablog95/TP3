@@ -2,7 +2,7 @@
 #define VERTICE_GRAFO_H
 
 #include <string>
-#include "lectura.h"
+#include "Lectura.h"
 
 using namespace std;
 

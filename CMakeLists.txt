@@ -12,13 +12,13 @@ add_executable(Prueba main.cpp
         grafo.cpp   grafo.h
         hashing.h
         historica.h     historica.cpp
-        lector.cpp  lector.h
+        lector2.cpp  lector2.h
         lectura.cpp lectura.h
         lista.h
-        listaG.h
+        lista_grafo.h
         menu.cpp    menu.h
-        nodo.h  nodog.h
+        nodo.h  nodo_grafo.h
         novela.cpp  novela.h
         parser.cpp  parser.h
         poema.cpp   poema.h
-        verticeG.cpp   verticeG.h)
+        vertice_grafo.cpp   vertice_grafo.h)

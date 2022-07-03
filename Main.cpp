@@ -1,5 +1,6 @@
 #include "Menu.h"
 #include "Grafo.h"
+#include "Prim.h"
 
 int main(){
 
@@ -27,12 +28,23 @@ int main(){
    Menu* menu = new Menu(lecturas, escritores, tabla_escritor);
    //menu->implementacion_menu();
 
+    //Prim* prim = new Prim(grafo->obtener_matriz_adyacencia(), grafo->obtener_vertices_totales());
+   //prim->funcion_1();
+   grafo->funcion_1();
+
+   Escritor* escritor_ = new Escritor("nombre_escritor", "nacionalidad", 2000 , 3000, 1234);
+   Lectura* lectura_ = new Cuento("C", "titulo", 3, 2001, escritor_, "TERROR");
+   grafo->alta(lectura_);
+   grafo->mostrarGrafo();
+   grafo->funcion_1();
+
    lecturas->destruir();
    escritores->destruir();
    
    
    delete escritor;
    delete menu;
+   delete grafo;
 
 
    
