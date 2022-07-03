@@ -16,6 +16,7 @@ private :
 
     Lista <Escritor*>* lista_escritores;
     Lista <Lectura*>* lista_lecturas;
+    Hashing<Escritor>* escritor_hashing;
     
     string tipo_lectura = "";
     string titulo = "";
@@ -41,7 +42,7 @@ public :
     Pre : -
     Post : Crea la clase Lector y pide memoria para los punteros a las lecturas
     */
-    Lector(Hashing<Escritor*>* escritor_hashing, Grafo* grafo);
+    Lector(Grafo* grafo);
 
     /*
     Pre : los datos tomados del archivo son correctos
