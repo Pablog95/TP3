@@ -33,6 +33,8 @@ public:
 
     //post: devuelve el  nombre que se encuentra en la posicion recibida o NOMBRE_NO_ENCONTRADO si no lo encuentra
     Tipo* obtener_elemento(int posicion);
+    
+    Tipo* obtenerDato(int posicion);
 
     //post: agrega un nuevo elemento a la lista
     void agregar(Tipo* nuevoElemento);
@@ -116,6 +118,19 @@ Tipo* ListaG<Tipo>::obtener_elemento(int posicion) {
     }
     return (auxiliar->obtener_dato());
 
+}
+
+template <class Tipo>
+Tipo* ListaG<Tipo> :: obtenerDato(int posicion){
+
+	NodoG<Tipo>* aux = primero;
+	int contador = 1;
+
+	while (contador < posicion && aux->obtenerSiguiente()){
+		aux = aux->obtenerSiguiente();
+		contador++;
+	}
+	return aux->obtener_dato();
 }
 
 template < class Tipo >
