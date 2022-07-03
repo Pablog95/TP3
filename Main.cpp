@@ -17,7 +17,7 @@ int main(){
 
    Lista<Escritor*>* escritores = escritor->obtener_Lescritores();
    Lista<Lectura*>* lecturas = escritor->obtener_Llecturas();
-
+   Hashing<Escritor>* tabla_hashing = escritor->obtener_tabla();
    //escritores->listar();
    //lecturas->listar();
 
