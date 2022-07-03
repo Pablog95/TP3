@@ -3,6 +3,7 @@
 
 #include "Lista.h"
 #include "Escritor.h"
+#include "ListaG.h"
 
 #include <list>
 
@@ -11,10 +12,9 @@ template <class Dato>
 class Hashing {
 
 private:
-    Dato* tabla_escritor[TAMANIO];
     bool dato_encontrado[TAMANIO];
 
-    list<Escritor*>* lista_escritores_tabla;
+    ListaG<Escritor>* lista_escritores_tabla;
 
 public:
     //CONSDatoRUCDatoOR
@@ -23,6 +23,7 @@ public:
     //DESDatoRUCDatoOR
     ~Hashing();
     void agregar_escritor(Dato* escritor, int clave);
+    void baja_escritor(Dato* escritor);
     int obtener_posicion_clave(int clave);
     //Dato* mostrar_hashing(int posicion);
     void mostrar_hashing();
@@ -36,25 +37,19 @@ template <class Dato>
 Hashing<Dato>::Hashing(){
     for (int i = 0; i < TAMANIO; i++)
     {
-        tabla_escritor[i] = nullptr;
+        lista_escritores_tabla = new ListaG <Escritor>[i];
         dato_encontrado[i] = false;
     }
-    lista_escritores_tabla = new list <Escritor*>[TAMANIO];
+    
 }
 
 
 template<class Dato>
 void Hashing<Dato>::agregar_escritor(Dato* escritor, int clave){
     int posicion = obtener_posicion_clave(clave);
-
-    if(tabla_escritor[posicion] == nullptr)
-    {
-        tabla_escritor[posicion] = escritor;
-        dato_encontrado[posicion] = true;
-    }else{
-        lista_escritores_tabla[posicion].push_back(*escritor);
-
-    }
+	
+	lista_escritores_tabla[posicion].agregar(escritor);
+	dato_encontrado[posicion] = true;
 }
 
 
@@ -66,30 +61,42 @@ int Hashing<Dato>::obtener_posicion_clave(int clave){
 
 template <class Dato>
 void Hashing<Dato> :: mostrar_hashing(){
-    for(int i = 0; i < TAMANIO; i++){
-        cout << i << ")";
-        if(dato_encontrado[i]){
-            tabla_escritor[i]->mostrar_datos();
-        }
-        //tabla_escritor[i]->mostrar_datos();
-        for (auto x: lista_escritores_tabla[i]){
-            //tabla_escritor[i]->mostrar_datos();
-            cout << endl;
-            x->mostrar();
-        }
-        cout << endl;
-    }
-    //lista_escritores[i].mostrar_datos();
+	for(int i = 0; i < TAMANIO; i++)
+	{
+		
+		if(dato_encontrado[i]){
+			cout << "<-------------------------------->" << endl;
+			cout << i << ") ";
+			auto x= lista_escritores_tabla[i];
+		
+			int tamanio_lista = x.obtenerCantidadDeElementos();
+			
+			x.obtenerDato(i)->mostrar();
+			for(int j = 1; j < tamanioLista ; j++){
+				cout << "<-------------------------------->"<< endl;
+				cout << "| C | O | L | I | S | I | O | N |"<< endl;
+				cout << "<-------------------------------->"<< endl;
+				x.obtenerDato(j)->mostrar();
+			}
+		}
+	}
+}
+
+template <class Dato>
+void Hashing<Dato> :: baja_escritor(Dato* escritor){
+	
+	for (int i = 0; i < TAMANIO; i++)
+	{
+		auto x = lista_escritores_tabla[i];
+		
+		int tamanio_lista = x.obtenerCantidadDeElementos();
+		if (x.obtenerDato(i) == escritor->obtener_nombres())
+			x.
+	}
+	
 }
 
 template<class Dato>
 Hashing<Dato> :: ~Hashing(){
-    for(int i = 0; i < TAMANIO; i++)
-    {
-        delete tabla_escritor[i];
-    }
-    delete lista_escritores_tabla;
+
 }
-
-
-#endif //TP_3_HASHING_H
