@@ -11,7 +11,7 @@ private :
 
     Lista <Escritor*>* escritores;
     //Lista <Lectura*>* lecturas;
-    Hashing<Escritor*>* escritor_hashing;
+    Hashing<Escritor>* escritor_hashing;
     Grafo* grafo;
 
     string tipo_lectura = "";
@@ -41,7 +41,7 @@ public :
     */
 
     //Menu (Lista <Lectura*>*, Lista <Escritor*>*, Hashing<Escritor*>* escritor_hashing);
-    Menu (Lista <Escritor*>*, Hashing<Escritor*>* escritor_hashing, Grafo * grafo);
+    Menu (Lista <Escritor*>*, Hashing<Escritor>* escritor_hashing, Grafo * grafo);
 
     /*
     Pre : los atributos y parametros usados son correctos
