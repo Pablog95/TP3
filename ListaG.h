@@ -13,13 +13,15 @@ const int POSICION_NO_ENCONTRADA = -1;
 
 template < typename Tipo >
 class ListaG{
-/*ATRIBUTOS*/
+
 private:
+
     int cantidadDeElementos;
     NodoG<Tipo>* primero;
     NodoG<Tipo>* ultimo;
 
-/*MÉTODOS*/
+    NodoG<Tipo>* obtener_nodo(int pos);
+
 public:
     ListaG();
 
@@ -34,6 +36,11 @@ public:
 
     //post: agrega un nuevo elemento a la lista
     void agregar(Tipo* nuevoElemento);
+
+    bool vacia();
+
+
+    void baja(int pos);
 
     ~ListaG();
 };
@@ -109,6 +116,41 @@ Tipo* ListaG<Tipo>::obtener_elemento(int posicion) {
     }
     return (auxiliar->obtener_dato());
 
+}
+
+template < class Tipo >
+bool ListaG<Tipo>::vacia(){
+    return (cantidadDeElementos == 0);
+}
+
+template < class Tipo >
+NodoG<Tipo>* ListaG<Tipo>::obtener_nodo(int pos){
+    NodoG<Tipo>* aux = primero;
+    int contador = 1;
+
+    while (contador < pos) {
+        aux = aux->obtenerSiguiente();
+        contador++;
+    }
+
+    return aux;
+}
+
+template < class Tipo >
+void ListaG<Tipo>::baja(int pos){
+    NodoG<Tipo>* aux = primero;
+    if (pos == 1) {
+        primero = primero->obtenerSiguiente();
+    }
+    else {
+        NodoG<Tipo>* anterior = obtener_nodo(pos - 1);
+        aux = anterior->obtenerSiguiente();
+        anterior->cambiar_siguiente(aux->obtenerSiguiente());
+    }
+    cantidadDeElementos--;
+
+    aux->borrar();
+    delete aux;
 }
 
 #endif //GRAFOS_LISTA_H

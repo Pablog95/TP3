@@ -48,6 +48,10 @@ string Grafo :: obtener_tipo_lectura (int i){
     return ((vertices ->obtener_elemento(i))->obtener_tipo());
 }
 
+string Grafo :: obtener_titulo (int i){
+    return ((vertices ->obtener_elemento(i))->obtener_titulo());
+}
+
 void Grafo::completar_matriz_adyacencia() {
     
     string vertice_actual = "";
@@ -82,6 +86,22 @@ void Grafo::agregarCamino(string origen, string destino, int i, int j) {
     }
 }
 
+void Grafo::achicarMatrizDeAdyacencia(){
+    int** matrizAuxiliar;
+
+    int nuevaCantidadDeVertices = vertices->obtenerCantidadDeElementos();
+
+    matrizAuxiliar = new int*[nuevaCantidadDeVertices];
+    for(int i = 0; i < nuevaCantidadDeVertices; i++){
+        matrizAuxiliar[i] = new int[nuevaCantidadDeVertices];
+    }
+
+    copiarMatrizAdyacente(matrizAuxiliar);
+    inicializarMatrizAchicada(matrizAuxiliar);
+    liberarMatrizAdyacencia();
+    matriz_de_adyacencia = matrizAuxiliar;
+}
+
 void Grafo::agrandarMatrizDeAdyacencia() {
     int** matrizAuxiliar;
 
@@ -102,6 +122,18 @@ void Grafo::copiarMatrizAdyacente(int** nuevaAdyacente) {
     for(int i = 0; i < vertices -> obtenerCantidadDeElementos(); i++){
         for(int j = 0; j < vertices -> obtenerCantidadDeElementos(); j++){
             nuevaAdyacente[i][j] = matriz_de_adyacencia[i][j];
+        }
+    }
+}
+
+void Grafo::inicializarMatrizAchicada(int **nuevaAdyacente) {
+    for(int i = 0; i < vertices -> obtenerCantidadDeElementos(); i++){
+        for(int j = 0; j < vertices -> obtenerCantidadDeElementos(); j++){
+
+            if(i == j)
+                nuevaAdyacente[i][j] = 0;
+            else
+                nuevaAdyacente[i][j] = INFINITO;
         }
     }
 }
@@ -160,12 +192,16 @@ void Grafo::mostrarMatrizAdyacencia() {
     cout << endl;
 }
 
-void Grafo :: funcion_1(){
+void Grafo :: tiempo_lectura_minimo() {
 
     int vertices_seleccionados[vertices_totales];
     memset(vertices_seleccionados, false, sizeof(vertices_seleccionados));
 
     vertices_seleccionados[0] = true;
+
+    int minimo = 0;
+    int fil = 0;
+    int col = 0;
 
     cout << "Camino" << " : " << "Peso" << endl;
     while (minimo < vertices_totales - 1) {
@@ -175,7 +211,8 @@ void Grafo :: funcion_1(){
         for (int i = 0; i < vertices_totales; i++) {
             if (vertices_seleccionados[i]) {
                 for (int j = 0; j < vertices_totales; j++) {
-                    if (!vertices_seleccionados[j] && matriz_de_adyacencia[i][j]) {  // not in vertices_seleccionados and there is an edge
+                    if (!vertices_seleccionados[j] &&
+                        matriz_de_adyacencia[i][j]) {  // not in vertices_seleccionados and there is an edge
                         if (min > matriz_de_adyacencia[i][j]) {
                             min = matriz_de_adyacencia[i][j];
                             fil = i;
@@ -191,6 +228,7 @@ void Grafo :: funcion_1(){
         tiempo_total = tiempo_total + matriz_de_adyacencia[fil][col];
     }
     cout << endl << "El tiempo total que tardará Sid en leer será (en minutos) : " << tiempo_total << endl << endl;
+    tiempo_total = 0;
 }
 
 void Grafo ::alta(Lectura* lectura){
@@ -199,9 +237,29 @@ void Grafo ::alta(Lectura* lectura){
     completar_matriz_adyacencia();
 }
 
-void Grafo :: baja(){
+void Grafo ::baja(string titulo) {
 
+    int i = 0;
+    bool encontrado = false;
+
+    while(!(vertices->vacia()) && !encontrado && i < vertices_totales){
+        if (vertices->obtener_elemento(i)->obtener_titulo() == titulo){
+            encontrado = true;
+        }
+        else
+            i++;
+    }
+
+    vertices -> baja(i + 1);
+    achicarMatrizDeAdyacencia();
+    completar_matriz_adyacencia();
 }
+
+bool Grafo :: grafo_vacio(){
+    return(vertices->vacia());
+}
+
+
 
 
 

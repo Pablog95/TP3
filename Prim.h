@@ -14,7 +14,7 @@ public:
 
     Prim(Lista<Vertice> * vertices, int ** matriz_de_adyacencia);
 
-    virtual void funcion_1() = 0;
+    virtual void tiempo_lectura_minimo() = 0;
 
     virtual ~Prim() {};
 

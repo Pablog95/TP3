@@ -10,6 +10,7 @@ class NodoG {
 private:
     Tipo* elemento;
     NodoG<Tipo>* siguiente;
+    NodoG<Tipo>* anterior;
 
 /*MÉTODOS*/
 public:
@@ -24,6 +25,12 @@ public:
     //post: le asigna como siguiente el nodo recibido
     void asignarSiguiente(NodoG<Tipo>* siguiente);
 
+    void cambiar_siguiente(NodoG* n);
+
+    void cambiar_anterior(NodoG* b);
+
+    void borrar();
+
     ~NodoG();
 };
 
@@ -31,6 +38,7 @@ template <class Tipo>
 NodoG<Tipo> ::NodoG(Tipo* dato) {
     elemento = dato;//new T(nombre);
     siguiente = nullptr;
+    anterior = nullptr;
 }
 
 template<typename Tipo>
@@ -46,6 +54,21 @@ Tipo* NodoG<Tipo>::obtener_dato() {
 template<typename Tipo>
 void NodoG<Tipo>::asignarSiguiente(NodoG<Tipo> *siguiente) {
     this -> siguiente = siguiente;
+}
+
+template < class Tipo >
+void NodoG<Tipo>::cambiar_siguiente(NodoG* n) {
+    siguiente = n;
+}
+
+template < class Tipo >
+void NodoG<Tipo>::cambiar_anterior(NodoG* b){
+    anterior = b;
+}
+
+template < class Tipo >
+void NodoG<Tipo>::borrar(){
+    elemento->borrar();
 }
 
 template<typename Tipo>

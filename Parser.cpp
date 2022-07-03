@@ -85,9 +85,9 @@ void menu_1(string * tipo_lectura, string * titulo, string * minutos, string * a
     cin.ignore();
 }
 
-void menu_2(string * n_lectura_quitar){
-    cout << "Que número de lectura desea quitar de la lista (contando desde arriba hacia abajo) : " << endl;
-    cin >> *n_lectura_quitar;
+void menu_2(string * titulo_lectura_quitar){
+    cout << "Ingrese el título de lectura desea quitar de la lista : " << endl;
+    cin >> *titulo_lectura_quitar;
     cin.ignore();
 }
 

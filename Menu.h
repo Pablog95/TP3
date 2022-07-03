@@ -10,8 +10,9 @@ class Menu {
 private :
 
     Lista <Escritor*>* escritores;
-    Lista <Lectura*>* lecturas;
+    //Lista <Lectura*>* lecturas;
     Hashing<Escritor*>* escritor_hashing;
+    Grafo* grafo;
 
     string tipo_lectura = "";
     string titulo = "";
@@ -28,7 +29,7 @@ private :
     string anio_fallecimiento = "";
     string anio1 = "";
     string anio2 = "";
-    string n_lectura_quitar = "";
+    string titulo_lectura_quitar = "";
     int numero;
     bool salir = false;
 
@@ -39,7 +40,8 @@ public :
     POS: crea un objeto de tipo parser
     */
 
-    Menu (Lista <Lectura*>*, Lista <Escritor*>*, Hashing<Escritor*>* escritor_hashing);
+    //Menu (Lista <Lectura*>*, Lista <Escritor*>*, Hashing<Escritor*>* escritor_hashing);
+    Menu (Lista <Escritor*>*, Hashing<Escritor*>* escritor_hashing, Grafo * grafo);
 
     /*
     Pre : los atributos y parametros usados son correctos

@@ -16,9 +16,6 @@ private:
     ListaG<Lectura> * vertices;
     int vertices_totales;
     //CaminoMinimo * algoritmoCaminoMinimo;
-    int minimo = 0;
-    int fil = 0;
-    int col = 0;
     int tiempo_total = 0;
 
 /*MÉTODOS*/
@@ -30,12 +27,16 @@ private:
     //post: agranda dinamicamente la matriz de adyacencia
     void agrandarMatrizDeAdyacencia();
 
+    void achicarMatrizDeAdyacencia();
+
     //pre: la matriz que se le envie ya debe tener memoria reservada
     //post: copia la matriz de adyacencia en la nueva matriz
     void copiarMatrizAdyacente(int** nuevaAdyacente);
 
     //post inicializa un nuevo vertice en la matriz de adyacencia con un valor de infinito
     void inicializarNuevoVertice(int** nuevaAdyacente);
+
+    void inicializarMatrizAchicada(int **nuevaAdyacente);
 
     //post libera la memoria de la matriz de adyacencia
     void liberarMatrizAdyacencia();
@@ -65,17 +66,21 @@ public:
 
     string obtener_tipo_lectura (int i);
 
+    string obtener_titulo (int i);
+
     void completar_matriz_adyacencia();
 
     //pre: el peso es un valor positivo
     //post: Ajusta la matriz de adyacencia con el peso ingresado
     void agregarCamino(string origen, string destino, int i, int j);
 
-    void funcion_1();
+    void tiempo_lectura_minimo();
 
     void alta(Lectura* lectura);
 
-    void baja();
+    void baja(string titulo);
+
+    bool grafo_vacio();
 
     ~Grafo();
 };

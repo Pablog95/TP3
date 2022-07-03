@@ -1,10 +1,17 @@
 #include "Menu.h"
 
+Menu :: Menu(Lista <Escritor*>* lista_escritor, Hashing<Escritor*>* escritor_hashing, Grafo * grafo){
+    escritores = lista_escritor;
+    this->escritor_hashing = escritor_hashing;
+    this->grafo = grafo;
+}
+/*
 Menu :: Menu(Lista <Lectura*>* lista_lectura, Lista <Escritor*>* lista_escritor, Hashing<Escritor*>* escritor_hashing){
     escritores = lista_escritor;
     lecturas = lista_lectura;
     this->escritor_hashing = escritor_hashing;
 }
+*/
 
 Menu:: ~Menu(){}
 
@@ -34,15 +41,18 @@ void Menu :: nueva_lectura(){
     else
         lectura = procesador_entradaL(escritores->consulta(stoi(referencia_al_autor)));
 
-    lecturas->insercion_ordenada(lectura);
+    grafo->alta(lectura);
+    //lecturas->insercion_ordenada(lectura);
 
 }
 
 void Menu :: quitar_lectura( ){
-    if(!lecturas->vacia()){
-        menu_2(&n_lectura_quitar);
 
-        lecturas->baja(stoi(n_lectura_quitar));
+    if(!grafo->grafo_vacio()){
+        menu_2(&titulo_lectura_quitar);
+
+        grafo->baja(titulo_lectura_quitar);
+        //lecturas->baja(stoi(n_lectura_quitar));
     }
     else
         cout << "La lista ya se encuentra vacia." << endl;
@@ -79,40 +89,39 @@ int Menu :: random (int min, int max) {
 
 void Menu :: lectura_random( ){
 
-    int n_lectura =  (random(0, lecturas->obtener_cantidad()));
+    int n_lectura =  (random(0, grafo->obtener_vertices_totales()));
 
-    Lectura* lectura = lecturas->consulta(n_lectura);
-    cout << "La lectura a leer en las terturlias será : " << lectura->obtener_titulo() << endl;
+    cout << "La lectura a leer en las terturlias será : " << grafo->obtener_titulo(n_lectura) << endl;
 }
 
 void Menu :: listar_lecturas( ){
-    lecturas->listar();
+    grafo->tiempo_lectura_minimo();
+    //lecturas->listar();
 }
 
+//TERMINAR ESTOOOOOO
 void Menu :: listar_lecturas_x_anios( ){
 
     menu_8(&anio1, &anio2);
 
-    lecturas->listar(stoi(anio1), stoi(anio2));
+    //lecturas->listar(stoi(anio1), stoi(anio2));
 }
 
+//TERMINAR ESTOOOOOO
 void Menu :: listar_lecturas_x_escritor( ){
 
     menu_9(&nombre_escritor);
 
-    lecturas->listar(nombre_escritor);
+    //lecturas->listar(nombre_escritor);
 }
 
+//TERMINAR ESTOOOOOO
 void Menu :: listar_novelas_x_genero( ){
 
     menu_10(&caracteristica);
 
     genero_t gen = string_a_genero_t(tema);
-    lecturas->listar(gen);
-}
-
-void Menu :: cola_ordenada(){
-
+    //lecturas->listar(gen);
 }
 
 void Menu :: mostrar_hashing() {
@@ -160,13 +169,10 @@ void Menu :: implementacion_menu(){
         case 10: listar_novelas_x_genero();
             break;
 
-        case 11: ;//cola_ordenada();
+        case 11: mostrar_hashing();
             break;
 
-        case 12: mostrar_hashing();
-            break;
-
-        case 13: salir = true;
+        case 12: salir = true;
             break;
 
         default: cout << "Usted a ingresado una opción incorrecta" << endl;
@@ -180,6 +186,8 @@ Lista<Escritor*>* Menu::obtener_Lescritores(){
     return escritores;
 }
 
+/*
 Lista<Lectura*>* Menu::obtener_Llecturas(){
     return lecturas;
 }
+ */
