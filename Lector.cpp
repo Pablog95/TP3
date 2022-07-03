@@ -3,7 +3,7 @@
 Lector :: Lector(Grafo* grafo){
     lista_escritores = new Lista <Escritor*>;
     lista_lecturas = new Lista <Lectura*>;
-    escritor_hashing = escritor_hashing;
+    escritor_hashing = new Hashing <Escritor>;
     this->grafo = grafo;
 }
 
