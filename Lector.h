@@ -87,7 +87,11 @@ public :
     Post : devuelve un puntero a la lista de lecturas
     */
     Lista<Lectura*>* obtener_Llecturas();
-
+    
+    /*
+    Pre : -
+    Post: Devuelve un puntero a la tabla hashing
+    Hashing<Escritor>* obtener_tabla();
 
     /*
     Pre : - 
