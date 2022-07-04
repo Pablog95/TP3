@@ -9,7 +9,7 @@ int main(){
     Grafo* grafo = new Grafo;
     Hashing<Escritor*>* tabla_escritor;
 
-    Lector* escritor = new Lector(tabla_escritor, grafo);
+    Lector* escritor = new Lector(grafo);
     escritor->lectura_archivo_escritores();
     escritor->leer_lectura();
     grafo->completar_matriz_adyacencia();
@@ -18,6 +18,7 @@ int main(){
    Lista<Escritor*>* escritores = escritor->obtener_Lescritores();
    Lista<Lectura*>* lecturas = escritor->obtener_Llecturas();
    Hashing<Escritor>* tabla_hashing = escritor->obtener_tabla();
+
    //escritores->listar();
    //lecturas->listar();
 
@@ -26,7 +27,7 @@ int main(){
   
 
    Menu* menu = new Menu(escritores, tabla_hashing, grafo);
-   //menu->implementacion_menu();
+   menu->implementacion_menu();
 
     //Prim* prim = new Prim(grafo->obtener_matriz_adyacencia(), grafo->obtener_vertices_totales());
    //prim->tiempo_lectura_minimo();

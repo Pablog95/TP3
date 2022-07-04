@@ -135,7 +135,7 @@ public :
     void cola_ordenada();
 
 
-    void mostrar_hashing();
+    void mostrar_tabla();
 
     /*
     Pre : el numero ingresado es correcto

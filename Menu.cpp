@@ -6,7 +6,7 @@ Menu :: Menu(Lista <Escritor*>* lista_escritor, Hashing<Escritor>* escritor_hash
     this->grafo = grafo;
 }
 /*
-Menu :: Menu(Lista <Lectura*>* lista_lectura, Lista <Escritor*>* lista_escritor, Hashing<Escritor>* escritor_hashing){
+Menu :: Menu(Lista <Lectura*>* lista_lectura, Lista <Escritor*>* lista_escritor, Hashing<Escritor*>* escritor_hashing){
     escritores = lista_escritor;
     lecturas = lista_lectura;
     this->escritor_hashing = escritor_hashing;
@@ -125,8 +125,10 @@ void Menu :: listar_novelas_x_genero( ){
     //lecturas->listar(gen);
 }
 
-void Menu :: mostrar_hashing() {
-    escritor_hashing->mostrar_hashing();
+void Menu :: mostrar_tabla() {
+	
+    
+	escritor_hashing->mostrar_hashing();
 }
 
 void Menu :: implementacion_menu(){
@@ -165,7 +167,7 @@ void Menu :: implementacion_menu(){
         case 10: listar_novelas_x_genero();
             break;
 
-        case 11: mostrar_hashing();
+        case 11: mostrar_tabla();
             break;
 
         case 12: salir = true;

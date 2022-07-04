@@ -33,7 +33,6 @@ void ingresar_numero(int *numero){
 
     cin >> (*numero);
     cin.ignore();
-
     //cout << numero << endl;
 
     cout << endl << endl;
@@ -93,44 +92,44 @@ void menu_2(string * titulo_lectura_quitar){
 
 void menu_3(string * referencia_al_autor, string * nombre_escritor, string * nacionalidad, string * anio_nacimiento, string * anio_fallecimiento){
     cout << "Ingrese el ISNI del escritor : " << endl;
-    cin >> *referencia_al_autor;
     cin.ignore();
+    cin >> *referencia_al_autor;
 
     cout << "Ingrese el nombre del escritor : " << endl;
-    cin >> *nombre_escritor;
     cin.ignore();
+    getline(cin,*nombre_escritor);
 
     cout << "Ingrese la nacionalidad del escritor : " << endl;
-    cin >> *nacionalidad;
     cin.ignore();
+    cin >> *nacionalidad;
 
     cout << "Ingrese el año de nacimiento del escritor (en caso de desconocerlo, ingrese -1): " << endl;
-    cin >> *anio_nacimiento;
     cin.ignore();
+    cin >> *anio_nacimiento;
 
     cout << "Ingrese el año de fallecimiento del escritor (en caso de no haber fallecido, ingrese -1)" << endl;
-    cin >> *anio_fallecimiento;
     cin.ignore();
+    cin >> *anio_fallecimiento;
 }
 
 void menu_4(string * referencia_al_autor, string * anio_fallecimiento){
-    cout << "Ingrese el numero del escritor al que le desea cambiar la fecha de fallecimiento () contando desde arriba hacia abajo: " << endl;
-    cin >> *referencia_al_autor;
+    cout << "Ingrese el numero del escritor al que le desea cambiar la fecha de fallecimiento () contando desde arriba hacia abajo: " << endl; 
     cin.ignore();
+    cin >> *referencia_al_autor;
 
     cout << "Ingrese el año de fallecimiento actualizado : " << endl;
-    cin >> *anio_fallecimiento;
     cin.ignore();
+    cin >> *anio_fallecimiento;
 }
 
 void menu_8(string * anio1, string * anio2){
     cout << "Ingrese desde que año desea listar las lecturas : " << endl;
-    cin >> *anio1;
     cin.ignore();
+    cin >> *anio1;
 
     cout << "Ingrese hasta que año desea listar las lecturas : " << endl;
-    cin >> *anio2;
     cin.ignore();
+    cin >> *anio2;
 }
 
 void menu_9(string * nombre_escritor){

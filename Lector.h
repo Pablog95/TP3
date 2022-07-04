@@ -17,6 +17,8 @@ private :
     Lista <Escritor*>* lista_escritores;
     Lista <Lectura*>* lista_lecturas;
     Hashing<Escritor>* escritor_hashing;
+    Grafo* grafo;
+    
     
     string tipo_lectura = "";
     string titulo = "";
@@ -32,8 +34,6 @@ private :
     string anio_fallecimiento = "";
     string n_escritor = "";
 
-    Grafo* grafo;
-    //Hashing<Escritor*>* escritor_hashing;
 
 public :
 
@@ -91,9 +91,10 @@ public :
     
     /*
     Pre : -
-    Post: Devuelve un puntero a la tabla hashing
-    */
+    Post : devuelve un puntero a tabla hashing de escritores
+    */    
     Hashing<Escritor>* obtener_tabla();
+
 
     /*
     Pre : - 

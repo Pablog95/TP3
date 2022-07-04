@@ -59,7 +59,6 @@ void Lector :: lectura_archivo_escritores( ){
             
             lista_escritores->alta_ultimo(escritor);
             escritor_hashing -> agregar_escritor(escritor, stoi(n_escritor));
-            //escritor_hashing -> agregar_escritor(&escritor, stoi(n_escritor));
                      
         }
     }
@@ -114,7 +113,6 @@ void Lector :: leer_lectura(){
 
             //lista_lecturas->insercion_ordenada(lectura);
             grafo->agregarVertice(lectura);
-
         }
     }
 }
