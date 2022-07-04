@@ -72,7 +72,7 @@ void Hashing<Dato> :: mostrar_hashing(){
 			int tamanio_lista = x.obtenerCantidadDeElementos();
 			
 			x.obtenerDato(i)->mostrar();
-			for(int j = 1; j < tamanioLista ; j++){
+			for(int j = 1; j < tamanio_lista ; j++){
 				cout << "<-------------------------------->"<< endl;
 				cout << "| C | O | L | I | S | I | O | N |"<< endl;
 				cout << "<-------------------------------->"<< endl;
@@ -90,8 +90,8 @@ void Hashing<Dato> :: baja_escritor(Dato* escritor){
 		auto x = lista_escritores_tabla[i];
 		
 		int tamanio_lista = x.obtenerCantidadDeElementos();
-		if (x.obtenerDato(i) == escritor->obtener_nombres())
-			x.
+		/*if (x.obtenerDato(i) == escritor->obtener_nombres())
+			x.*/
 	}
 	
 }

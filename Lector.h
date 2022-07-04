@@ -33,7 +33,7 @@ private :
     string n_escritor = "";
 
     Grafo* grafo;
-    Hashing<Escritor*>* escritor_hashing;
+    //Hashing<Escritor*>* escritor_hashing;
 
 public :
 

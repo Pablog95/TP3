@@ -1,6 +1,6 @@
 #include "Menu.h"
 
-Menu :: Menu(Lista <Escritor*>* lista_escritor, Hashing<Escritor*>* escritor_hashing, Grafo * grafo){
+Menu :: Menu(Lista <Escritor*>* lista_escritor, Hashing<Escritor>* escritor_hashing, Grafo * grafo){
     escritores = lista_escritor;
     this->escritor_hashing = escritor_hashing;
     this->grafo = grafo;

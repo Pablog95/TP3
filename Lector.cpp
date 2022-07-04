@@ -58,6 +58,7 @@ void Lector :: lectura_archivo_escritores( ){
             Escritor* escritor = new Escritor(nombre_escritor, nacionalidad, stoi(anio_nacimiento), stoi(anio_fallecimiento), stoi(n_escritor));
             
             lista_escritores->alta_ultimo(escritor);
+            escritor_hashing -> agregar_escritor(escritor, stoi(n_escritor));
             //escritor_hashing -> agregar_escritor(&escritor, stoi(n_escritor));
                      
         }
@@ -113,7 +114,7 @@ void Lector :: leer_lectura(){
 
             //lista_lecturas->insercion_ordenada(lectura);
             grafo->agregarVertice(lectura);
-            escritor_hashing -> agregar_escritor(escritor, stoi(n_escritor));
+
         }
     }
 }
