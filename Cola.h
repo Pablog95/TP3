@@ -2,6 +2,7 @@
 #define COLA_H_INCLUDED
 
 // MAKDASL VOSDIV VSPDOVJSD
+// MASLKANDLKASNLD
 
 #include "Menu.h"
 
