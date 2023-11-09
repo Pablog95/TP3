@@ -1,6 +1,8 @@
 #ifndef COLA_H_INCLUDED
 #define COLA_H_INCLUDED
 
+// MAKDASL VOSDIV VSPDOVJSD
+
 #include "Menu.h"
 
 template < typename Dato >
